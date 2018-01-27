@@ -24,7 +24,7 @@ public class DialRotation : MonoBehaviour {
         else 
         {
             //slider is clamped to (-0.045 to 0.045)
-            slider.transform.localPosition = new Vector3(angle / 2000f, 0f, -0.07f);
+            slider.transform.localPosition = new Vector3(-angle / 200f, 0f, -0.07f);
         }
 
     }
