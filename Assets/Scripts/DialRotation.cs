@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class DialRotation : MonoBehaviour {
 
-    public float DeltaPerFrame = 0.5f;
+    public float RotationSpeed = 0.5f;
 
-	
+    private float WrapAngle(float angle)
+    {
+        angle %= 360;
+        if (angle > 180)
+            return angle - 360;
+
+        return angle;
+    }
+
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.LeftArrow)) {
-            gameObject.transform.Rotate(0f, 0f, DeltaPerFrame);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        float angle = WrapAngle(gameObject.transform.localRotation.eulerAngles.z);
+        if (Input.GetKey(KeyCode.LeftArrow) && angle < 90f) 
         {
-            gameObject.transform.Rotate(0f, 0f, -DeltaPerFrame);
+            gameObject.transform.Rotate(0f, 0f, RotationSpeed);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow) && angle > -90f)
+        {
+            gameObject.transform.Rotate(0f, 0f, -RotationSpeed);
         }
 
 	}
