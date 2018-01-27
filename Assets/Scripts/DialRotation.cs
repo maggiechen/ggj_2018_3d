@@ -9,7 +9,7 @@ public class DialRotation : MonoBehaviour {
     public GameObject slider;
     public TextMesh frequency;
 
-    private float currentFrequency;
+    private static float currentFrequency;
 
     private float WrapAngle(float angle)
     {

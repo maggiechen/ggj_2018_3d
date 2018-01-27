@@ -180,7 +180,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -204,7 +204,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!82 &82373499695122218
 AudioSource:
   m_ObjectHideFlags: 1
@@ -420,7 +420,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -444,7 +444,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!114 &114119102674040712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -460,4 +460,4 @@ MonoBehaviour:
   channel_2: {fileID: 82403823296690108}
   channel_3: {fileID: 82373499695122218}
   channel_weed: {fileID: 82296310207715708}
-  Static: {fileID: 82597576469087742}
+  RadioTuning: {fileID: 82597576469087742}
