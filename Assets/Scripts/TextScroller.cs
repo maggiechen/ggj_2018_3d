@@ -10,7 +10,9 @@ public class TextScroller : MonoBehaviour {
     public float scrollRate;
     public float fadeRate;
 	void Start () {
-        if (GameManager.Instance.gameStateMachine.currentState == StateType.Intro)
+        if (GameManager.Instance.gameStateMachine.currentState == StateType.Intro ||
+            GameManager.Instance.gameStateMachine.currentState == StateType.BadEnd ||
+            GameManager.Instance.gameStateMachine.currentState == StateType.GoodEnd)
         {
             scrollRect.verticalNormalizedPosition = 1;
             StartCoroutine(ScrollDown());
@@ -24,14 +26,12 @@ public class TextScroller : MonoBehaviour {
             yield return null;
         }
 
-        while (canvasGroup.alpha > 0)
-        {
-            canvasGroup.alpha -= fadeRate;
-            yield return null;
-        }
-
-        if (GameManager.Instance.gameStateMachine.currentState == StateType.Intro)
-        {
+        if (GameManager.Instance.gameStateMachine.currentState == StateType.Intro) {
+            while (canvasGroup.alpha > 0)
+            {
+                canvasGroup.alpha -= fadeRate;
+                yield return null;
+            }
             screenFaderController.StartFadingToClear();
         }
     }

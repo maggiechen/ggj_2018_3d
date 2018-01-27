@@ -53,7 +53,7 @@ public class ChannelController : MonoBehaviour {
     //returns 0 - 2 for police channels
     //        3 for weed
     //       -1 for nothing
-    int ReturnChannel(float frequency){
+    public static int ReturnChannel(float frequency){
         if (frequency >= 369.69 && frequency <= 373.01)
             return 0;
         else if (frequency >= 388.90 && frequency <= 393.10)
@@ -70,7 +70,7 @@ public class ChannelController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         bool dialMoving = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
-        int currentChannel = ReturnChannel(DialRotation.GetFrequency());
+        int currentChannel = ChannelController.ReturnChannel(DialRotation.GetFrequency());
 
         if (dialMoving)
         {
