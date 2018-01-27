@@ -5,6 +5,7 @@ using UnityEngine;
 public class DialRotation : MonoBehaviour {
 
     public float RotationSpeed = 0.5f;
+    public GameObject slider;
 
     private float WrapAngle(float angle)
     {
@@ -15,9 +16,15 @@ public class DialRotation : MonoBehaviour {
         return angle;
     }
 
-    void MoveSlider(int dir) {
-        GameObject slider = GameObject.Find ("Slider");
-        slider.transform.Translate (Vector3.right * dir* RotationSpeed/25);
+    private void MoveSlider(int dir) {
+        if (slider == null) 
+        {
+            Debug.Log("Slider is unassigned");
+        }
+        else 
+        {
+            slider.transform.Translate(Vector3.right * dir * RotationSpeed / 25);
+        }
 
     }
 
