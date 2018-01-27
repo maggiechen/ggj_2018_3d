@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ChannelController : MonoBehaviour {
-    public AudioSource channel_1;
-    public AudioSource channel_2;
-    public AudioSource channel_3;
-    public AudioSource channel_weed;
-    public AudioSource RadioTuning;
+    private AudioSource channel_1;
+    private AudioSource channel_2;
+    private AudioSource channel_3;
+    private AudioSource channel_weed;
+    private AudioSource RadioTuning;
 
     private AudioClip[] radioSFX;
     private AudioClip[] weedmanClips;
@@ -16,6 +16,13 @@ public class ChannelController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        channel_1 = audioSources[0];
+        channel_2 = audioSources[1];
+        channel_3 = audioSources[2];
+        channel_weed = audioSources[3];
+        RadioTuning = audioSources[4];
+
         radioSFX = Resources.LoadAll<AudioClip>("Sounds/SFX");
         weedmanClips = Resources.LoadAll<AudioClip>(VO_PATH + "Weedman");
 
