@@ -11,10 +11,14 @@ public class ScreenFaderController : MonoBehaviour {
         if (gameInstance.gameStateMachine.currentState == StateType.Intro)
         {
             canvasGroup.alpha = 1;
-            StartCoroutine(FadeToClear());
         }
 	}
-	
+
+    public void StartFadingToClear()
+    {
+        StartCoroutine(FadeToClear());
+    }
+
     IEnumerator FadeToClear()
     {
         while (canvasGroup.alpha > 0)
