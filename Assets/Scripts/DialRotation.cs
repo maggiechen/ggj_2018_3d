@@ -39,7 +39,7 @@ public class DialRotation : MonoBehaviour {
         currentFrequency = myFrequency;
     }
 
-    public float GetFrequency() {
+    public static float GetFrequency() {
         return currentFrequency;
     }
 
