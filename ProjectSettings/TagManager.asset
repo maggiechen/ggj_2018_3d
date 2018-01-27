@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - ScreenFader
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ScreenFader
+    uniqueID: 1195965499
+    locked: 0
+  - name: UI
+    uniqueID: 955624677
     locked: 0

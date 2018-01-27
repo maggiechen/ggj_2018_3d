@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 public class GameStateMachine
 {
@@ -35,6 +36,17 @@ public class GameStateMachine
         previousState = currentState;
         currentState = states[currentState].GetNextState(this);
         Debug.Log("State is now: " + Enum.GetName(typeof(StateType), currentState));
+        if (currentState == StateType.Intro)
+        {
+            SceneManager.LoadSceneAsync("MainGame", LoadSceneMode.Single);
+        }
+        else if (currentState == StateType.BadEnd)
+        {
+            SceneManager.LoadSceneAsync("BadEnd", LoadSceneMode.Single);
+        } else if (currentState == StateType.GoodEnd)
+        {
+            SceneManager.LoadSceneAsync("GoodEnd", LoadSceneMode.Single);
+        }
     }
 }
 

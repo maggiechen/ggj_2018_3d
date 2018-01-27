@@ -7,7 +7,9 @@ public class ScreenFaderController : MonoBehaviour {
     public float fadeRate;
 	// Use this for initialization
 	void Start () {
-        if (GameManager.Instance.gameStateMachine.currentState == StateType.Intro)
+        if (GameManager.Instance.gameStateMachine.currentState == StateType.Intro ||
+            GameManager.Instance.gameStateMachine.currentState == StateType.BadEnd ||
+            GameManager.Instance.gameStateMachine.currentState == StateType.GoodEnd)
         {
             canvasGroup.alpha = 1;
         }

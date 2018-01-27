@@ -113,7 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &197102089
+--- !u!1001 &375877980
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -155,7 +155,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d02a99cecc20ff84a9f4fe65e27accc6, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &847630535
+--- !u!1001 &1040856757
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -201,19 +201,20 @@ Prefab:
     - target: {fileID: 224198714648137816, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 461
+      value: 557
       objectReference: {fileID: 0}
     - target: {fileID: 224198714648137816, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 370
       objectReference: {fileID: 0}
     - target: {fileID: 114286550570750728, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_Text
-      value: "\n\n\n\n\n\n\n\n\n\nYou lose. \nThe cybercops caught Weed Man,\nand
-        the cyberweed has been lost once again\nto the Institution. \n\nCyberpress
-        CyberSpace to cyberrestart."
+      value: "\n\n\n\n\n\n\n\nYou win!\nYou have been rewarded with one leaf of authentic,
+        \norganic 2018 weed, and Weed Man is free once more \nto spread the Gospel
+        of cyberJesus to the \ncyberweedless cybermasses.\n\nCyberpress CyberSpace
+        to cyberrestart."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 504a39508a95f1841af4aeb68114dc21, type: 2}
