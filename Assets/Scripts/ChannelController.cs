@@ -55,7 +55,9 @@ public class ChannelController : MonoBehaviour {
             }
         }else
         {
-            if(ReturnChannel(DialRotation.GetFrequency()) < 0)
+            if (ReturnChannel (DialRotation.GetFrequency ()) < 0) {
+                
+            }
                 //TODO: Play staticSound OR Random channel
 
             RadioTuning.volume -= 0.1f;
