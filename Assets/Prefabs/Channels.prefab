@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 82269394083967660}
   - component: {fileID: 82403823296690108}
   - component: {fileID: 82373499695122218}
+  - component: {fileID: 114119102674040712}
   m_Layer: 0
   m_Name: Channels
   m_TagString: Untagged
@@ -282,3 +283,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114119102674040712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628468305726564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2852b948512e467459422445983e84f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel_1: {fileID: 82269394083967660}
+  channel_2: {fileID: 82403823296690108}
+  channel_weed: {fileID: 82373499695122218}
