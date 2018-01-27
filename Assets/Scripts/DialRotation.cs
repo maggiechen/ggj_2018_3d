@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class DialRotation : MonoBehaviour {
     public float RotationSpeed = 0.5f;
     public GameObject slider;
     public TextMesh frequency;
+
+    private float currentFrequency;
 
     private float WrapAngle(float angle)
     {
@@ -31,11 +34,14 @@ public class DialRotation : MonoBehaviour {
 
     private void UpdateFrequency(float angle) {
         float angle2 = angle + 90f;
-        float myFrequency = Mathf.Clamp(420.69f - 0.28333f * angle2, 369.69f, 420.69f);
+        float myFrequency = (float)Math.Round(Mathf.Clamp(420.69f - 0.28333f * angle2, 369.69f, 420.69f), 2);
         frequency.text = (myFrequency).ToString();
+        currentFrequency = myFrequency;
     }
 
-
+    public float GetFrequency() {
+        return currentFrequency;
+    }
 
 	// Update is called once per frame
 	void Update () {
