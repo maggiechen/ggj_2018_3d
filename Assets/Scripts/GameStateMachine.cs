@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class GameStateMachine
 {
     private Dictionary<StateType, GameState> states = new Dictionary<StateType, GameState>()
@@ -19,6 +19,11 @@ public class GameStateMachine
     public bool pauseRequested;
     public bool bad;
 
+    public GameStateMachine()
+    {
+        Debug.Log("State is now: Intro");
+    }
+
     public void Pause()
     {
         pauseRequested = true;
@@ -29,6 +34,7 @@ public class GameStateMachine
     {
         previousState = currentState;
         currentState = states[currentState].GetNextState(this);
+        Debug.Log("State is now: " + Enum.GetName(typeof(StateType), currentState));
     }
 }
 
