@@ -16,14 +16,15 @@ public class DialRotation : MonoBehaviour {
         return angle;
     }
 
-    private void MoveSlider(int dir) {
+    private void MoveSlider(float angle) {
         if (slider == null) 
         {
             Debug.Log("Slider is unassigned");
         }
         else 
         {
-            slider.transform.Translate(Vector3.right * dir * RotationSpeed / 25);
+            //slider is clamped to (-0.045 to 0.045)
+            slider.transform.localPosition = new Vector3(angle / 2000f, 0f, -0.07f);
         }
 
     }
@@ -31,14 +32,13 @@ public class DialRotation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float angle = WrapAngle(gameObject.transform.localRotation.eulerAngles.z);
+        MoveSlider(angle);
         if (Input.GetKey(KeyCode.LeftArrow) && angle < 90f) 
         {
-            MoveSlider (-1);
             gameObject.transform.Rotate(0f, 0f, RotationSpeed);
         }
         else if (Input.GetKey(KeyCode.RightArrow) && angle > -90f)
         {
-            MoveSlider (1);
             gameObject.transform.Rotate(0f, 0f, -RotationSpeed);
         }
 
