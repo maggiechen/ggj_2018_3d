@@ -3,19 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ChannelController : MonoBehaviour {
-    public AudioSource channel_1;
-    public AudioSource channel_2;
-    public AudioSource channel_3;
-    public AudioSource channel_weed;
-    public AudioSource RadioTuning;
+    private AudioSource[] radioChannels;
+    private AudioSource RadioTuning;
+    private AudioSource[] audioSources;
 
     private AudioClip[] radioSFX;
     private AudioClip[] weedmanClips;
 
     private const string VO_PATH = "Sounds/VO";
+    private const float VOL_DELTA = 0.1f;
 
     // Use this for initialization
     void Start () {
+        audioSources = GetComponents<AudioSource>();
+        RadioTuning = audioSources[0];
+        radioChannels = new AudioSource[audioSources.Length - 1];
+        for (int c = 1; c < audioSources.Length; c++)
+        {
+            radioChannels[c - 1] = audioSources[c];
+        }
+        
+
         radioSFX = Resources.LoadAll<AudioClip>("Sounds/SFX");
         weedmanClips = Resources.LoadAll<AudioClip>(VO_PATH + "Weedman");
 
@@ -25,20 +33,18 @@ public class ChannelController : MonoBehaviour {
         RadioTuning.Play();
 	}
 	
-    //returns 1 for channel 1
-    //        2 for channel 2
-    //        3 for channel 3
-    //        4 for weed
+    //returns 0 - 2 for police channels
+    //        3 for weed
     //       -1 for nothing
     int ReturnChannel(float frequency){
         if (frequency >= 369.69 && frequency <= 373.01)
-            return 1;
+            return 0;
         else if (frequency >= 388.90 && frequency <= 393.10)
-            return 2;
+            return 1;
         else if (frequency >= 407.63 && frequency <= 410.20)
-            return 3;
+            return 2;
         else if (frequency == 420.69)
-            return 4;
+            return 3;
         else
             return -1;
             
@@ -47,20 +53,41 @@ public class ChannelController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         bool dialMoving = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
+        int currentChannel = ReturnChannel(DialRotation.GetFrequency());
+
         if (dialMoving)
         {
             if (RadioTuning.volume < 1)
             {
-                RadioTuning.volume += 0.1f;
+                RadioTuning.volume += VOL_DELTA;
             }
         }else
         {
-            if (ReturnChannel (DialRotation.GetFrequency ()) < 0) {
+            if ( currentChannel < 0) {
                 
             }
                 //TODO: Play staticSound OR Random channel
 
-            RadioTuning.volume -= 0.1f;
+            RadioTuning.volume -= VOL_DELTA;
+        }
+
+        //Dial can hear a radio station
+        //TODO THIS IS NOT TESTED
+        if (currentChannel >= 0)
+        {
+            radioChannels[currentChannel].volume += VOL_DELTA;
+            if (currentChannel - 1 >= 0)
+            {
+                radioChannels[currentChannel - 1].volume -= VOL_DELTA;
+            }
+            if (currentChannel + 1 < radioChannels.Length)
+            {
+                radioChannels[currentChannel + 1].volume -= VOL_DELTA;
+            }
+        }
+        if (currentChannel == 3)
+        {
+            //TODO Weed Channel, let Player interact with Map
         }
 	}
 

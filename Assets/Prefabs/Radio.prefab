@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 4433139869250706}
   - component: {fileID: 23568762185502884}
   - component: {fileID: 102408629522560480}
+  - component: {fileID: 114268185362182430}
   m_Layer: 0
   m_Name: TimerText
   m_TagString: Untagged
@@ -806,7 +807,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 605790a74f48141f4a749ccc64d62483, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -953,6 +954,18 @@ MonoBehaviour:
   RotationSpeed: 0.5
   slider: {fileID: 1016642761366134}
   frequency: {fileID: 102713610712152140}
+--- !u!114 &114268185362182430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1420198871349292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b7884ccd5484f269004f3815138994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 102408629522560480}
 --- !u!114 &114390252945391424
 MonoBehaviour:
   m_ObjectHideFlags: 1
