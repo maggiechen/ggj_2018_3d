@@ -6,6 +6,7 @@ public class DialRotation : MonoBehaviour {
 
     public float RotationSpeed = 0.5f;
     public GameObject slider;
+    public TextMesh frequency;
 
     private float WrapAngle(float angle)
     {
@@ -17,22 +18,30 @@ public class DialRotation : MonoBehaviour {
     }
 
     private void MoveSlider(float angle) {
-        if (slider == null) 
+        if (slider == null)
         {
             Debug.Log("Slider is unassigned");
         }
-        else 
+        else
         {
             //slider is clamped to (-0.045 to 0.045)
             slider.transform.localPosition = new Vector3(-angle / 200f, 0f, -0.07f);
         }
-
     }
+
+    private void UpdateFrequency(float angle) {
+        float angle2 = angle + 90f;
+        float myFrequency = Mathf.Clamp(420.69f - 0.28333f * angle2, 369.69f, 420.69f);
+        frequency.text = (myFrequency).ToString();
+    }
+
+
 
 	// Update is called once per frame
 	void Update () {
         float angle = WrapAngle(gameObject.transform.localRotation.eulerAngles.z);
         MoveSlider(angle);
+        UpdateFrequency(angle);
         if (Input.GetKey(KeyCode.LeftArrow) && angle < 90f) 
         {
             gameObject.transform.Rotate(0f, 0f, RotationSpeed);

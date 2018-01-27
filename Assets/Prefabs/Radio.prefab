@@ -952,6 +952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RotationSpeed: 0.5
   slider: {fileID: 1016642761366134}
+  frequency: {fileID: 102713610712152140}
 --- !u!114 &114390252945391424
 MonoBehaviour:
   m_ObjectHideFlags: 1
