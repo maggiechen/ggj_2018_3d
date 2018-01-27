@@ -7,15 +7,22 @@ public class ChannelController : MonoBehaviour {
     public AudioSource channel_2;
     public AudioSource channel_3;
     public AudioSource channel_weed;
-    public AudioSource Static;
+    public AudioSource RadioTuning;
 
     private AudioClip[] radioSFX;
+    private AudioClip[] weedmanClips;
 
-	// Use this for initialization
-	void Start () {
+    private const string VO_PATH = "Sounds/VO";
+
+    // Use this for initialization
+    void Start () {
         radioSFX = Resources.LoadAll<AudioClip>("Sounds/SFX");
+        weedmanClips = Resources.LoadAll<AudioClip>(VO_PATH + "Weedman");
 
-        Static.clip = radioSFX[0];
+        RadioTuning.clip = radioSFX[1];
+        RadioTuning.volume = 0;
+        RadioTuning.loop = true;
+        RadioTuning.Play();
 	}
 	
 	// Update is called once per frame
@@ -23,14 +30,13 @@ public class ChannelController : MonoBehaviour {
         bool dialMoving = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
         if (dialMoving)
         {
-            if (!Static.isPlaying)
+            if (RadioTuning.volume < 1)
             {
-                Static.Play();
+                RadioTuning.volume += 0.1f;
             }
         }else
         {
-            //TODO check if on a station
-            Static.Stop();
+            RadioTuning.volume -= 0.1f;
         }
 	}
 
