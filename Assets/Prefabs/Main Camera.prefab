@@ -55,6 +55,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4614203752188018}
   - component: {fileID: 225899629448675980}
+  - component: {fileID: 114932800007449646}
+  - component: {fileID: 114965465039986392}
+  - component: {fileID: 114739010846415344}
   m_Layer: 0
   m_Name: ScreenFader
   m_TagString: Untagged
@@ -199,6 +202,32 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114739010846415344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1734811845449588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce9e37c59149f242ab95460ec135bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 225899629448675980}
+  fadeRate: 0.005
+--- !u!114 &114932800007449646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1734811845449588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce9e37c59149f242ab95460ec135bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 225899629448675980}
+  fadeRate: 0.005
 --- !u!114 &114942381847985382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,6 +244,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114965465039986392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1734811845449588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce9e37c59149f242ab95460ec135bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 225899629448675980}
+  fadeRate: 0.005
 --- !u!124 &124662046608671702
 Behaviour:
   m_ObjectHideFlags: 1
@@ -292,7 +334,7 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734811845449588}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

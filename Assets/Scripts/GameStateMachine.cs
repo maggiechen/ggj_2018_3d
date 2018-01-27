@@ -13,7 +13,7 @@ public class GameStateMachine
         {StateType.GoodEnd, new GoodEndState()}
     };
 
-    private StateType currentState = StateType.Intro;
+    public StateType currentState = StateType.Intro;
     public StateType previousState = StateType.Intro;
 
     public bool pauseRequested;

@@ -4,11 +4,7 @@ using System.Collections.Generic;
 
 public class GameManager {
     private static GameManager instance;
-    public GameStateMachine gameStateMachine;
-    private GameManager()
-    {
-        // hooboy a game manager
-    }
+    public GameStateMachine gameStateMachine = new GameStateMachine();
 
     public static GameManager Instance
     {
