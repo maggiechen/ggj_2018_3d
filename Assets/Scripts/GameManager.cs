@@ -17,8 +17,13 @@ public class GameManager {
                 instance = new GameManager();
                 instance.copMovementIndex = 0;
                 // populate cop movements
+                
+                // 00:00
+                Dictionary<int, int> copMoves = new Dictionary<int, int> { };
+                instance.copMovementsByInterval.Add(copMoves);
+
                 // 00:30
-                Dictionary<int, int> copMoves = new Dictionary<int, int>
+                copMoves = new Dictionary<int, int>
                 {
                     { 3, 1 }
                 };
@@ -103,27 +108,25 @@ public class GameManager {
         {
             gameStateMachine.locations[i] = 0;
         }
-        Debug.Log("Cops reset");
     }
 
     public void AdvanceCopMovements()
     {
+        Dictionary<int, int> movements = copMovementsByInterval[copMovementIndex];
+            
+        foreach (KeyValuePair<int, int> entry in movements)
+        {
+            gameStateMachine.UpdateCops(entry.Key, entry.Value);
+        }
+        
+        copMovementIndex++;
+
         if (copMovementIndex == copMovementsByInterval.Count)
         {
             if (gameStateMachine.currentState == StateType.Playing)
             {
                 gameStateMachine.AdvanceState();
             }
-        } else
-        {
-            Dictionary<int, int> movements = copMovementsByInterval[copMovementIndex];
-            
-            foreach (KeyValuePair<int, int> entry in movements)
-            {
-                gameStateMachine.UpdateCops(entry.Key, entry.Value);
-            }
-            
-            copMovementIndex++;
         }
     }
 }
