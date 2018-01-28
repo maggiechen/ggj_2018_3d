@@ -22,7 +22,7 @@ public class GameStateMachine
     public bool pauseRequested;
     public bool bad;
 
-    List<int> locations = new List<int> { 0, 0, 0, 0};
+    public List<int> locations = new List<int> { 0, 0, 0, 0};
     int weedVanLocation = 0;
     int weedVanPrevLocation = 0;
 
