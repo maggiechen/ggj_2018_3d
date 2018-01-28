@@ -228,6 +228,21 @@ Prefab:
       propertyPath: m_FontData.m_HorizontalOverflow
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114811565058967516, guid: 504a39508a95f1841af4aeb68114dc21,
+        type: 2}
+      propertyPath: scrollRate
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 114811565058967516, guid: 504a39508a95f1841af4aeb68114dc21,
+        type: 2}
+      propertyPath: waitForFadeSeconds
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114811565058967516, guid: 504a39508a95f1841af4aeb68114dc21,
+        type: 2}
+      propertyPath: fadeRate
+      value: 0.005
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 504a39508a95f1841af4aeb68114dc21, type: 2}
   m_IsPrefabParent: 0
