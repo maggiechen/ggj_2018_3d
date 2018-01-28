@@ -13,7 +13,7 @@ public class ChannelController : MonoBehaviour {
     private AudioClip[][] policeClips;
     private AudioClip[] weedmanClips;
 
-    private const string VO_PATH = "Sounds/VO";
+    private const string VO_PATH = "Sounds/VO/";
     private const float VOL_DELTA = 0.1f;
     private const int POLICE_CHANNELS = 3;
     private const int RADIO_SFX_SOURCES = 2;
@@ -38,14 +38,16 @@ public class ChannelController : MonoBehaviour {
 
         radioSFX = Resources.LoadAll<AudioClip>("Sounds/SFX");
         weedmanClips = Resources.LoadAll<AudioClip>(VO_PATH + "Weedman");
-        policeClips = new AudioClip[3][];
+        policeClips = new AudioClip[POLICE_CHANNELS][];
+
         for (int p = 0; p < POLICE_CHANNELS; p++)
         {
-            string path = VO_PATH + "/Channel" + (p + 1);
+            string path = VO_PATH + "Channel" + (p + 1);
             policeClips[p] = Resources.LoadAll<AudioClip>(path);
 
             assignClipToSourceAndPlay(policeClips[p][0], radioChannels[p]);
         }
+        assignClipToSourceAndPlay(weedmanClips[0], radioChannels[POLICE_CHANNELS]);
 
         assignClipToSourceAndPlay(radioSFX[0], RadioStatic);
         assignClipToSourceAndPlay(radioSFX[1], RadioTuning);
@@ -56,7 +58,14 @@ public class ChannelController : MonoBehaviour {
         source.clip = clip;
         source.volume = 0;
         source.loop = true;
-        source.Play();
+
+        //source.Play();
+    }
+
+    public void PlayIntro()
+    {
+        
+
     }
 	
     //returns 0 - 2 for police channels
