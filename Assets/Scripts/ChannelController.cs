@@ -17,10 +17,8 @@ public class ChannelController : MonoBehaviour {
     private const float VOL_DELTA = 0.1f;
     private const int POLICE_CHANNELS = 3;
     private const int RADIO_SFX_SOURCES = 2;
-
-    private int lastPlayingStation = 0;
-
-
+    private const int WEEDMAN_CONST = 5;
+ 
     void Start () {
         AudioSource[] audioSources = GetComponents<AudioSource>();
         totalAudioSources = audioSources.Length;
@@ -137,9 +135,9 @@ public class ChannelController : MonoBehaviour {
 
         if (currentChannel == 3)
         {
-           //TODO Weed Channel, let Player interact with Map
+            //TODO: check if a pin was placed/button was pressed and give a stock response.
+            radioChannels[currentChannel].volume+=VOL_DELTA;
         }
 	}
-
 
 }

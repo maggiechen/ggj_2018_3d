@@ -36,8 +36,10 @@ public class DialRotation : MonoBehaviour {
         float angle2 = angle + 90f;
         float myFrequency = (float)Math.Round(Mathf.Clamp(420.69f - 0.28333f * angle2, 369.69f, 420.69f), 2);
         if (ChannelController.ReturnChannel (myFrequency) <= 0) {
-            frequency.text = (myFrequency).ToString ();
-        }        
+            //todo change text color
+
+        }
+        frequency.text = (myFrequency).ToString ();
         currentFrequency = myFrequency;
     }
 
