@@ -307,6 +307,26 @@ Prefab:
       propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 102076858829602972, guid: 70c2f90874d3ee34eaf108af1dc01bb7,
+        type: 2}
+      propertyPath: m_Color.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 102553346617979826, guid: 70c2f90874d3ee34eaf108af1dc01bb7,
+        type: 2}
+      propertyPath: m_Color.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 102798958479778014, guid: 70c2f90874d3ee34eaf108af1dc01bb7,
+        type: 2}
+      propertyPath: m_Color.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 102740631987021832, guid: 70c2f90874d3ee34eaf108af1dc01bb7,
+        type: 2}
+      propertyPath: m_Color.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70c2f90874d3ee34eaf108af1dc01bb7, type: 2}
   m_IsPrefabParent: 0
