@@ -20,6 +20,7 @@ public class AreaController : MonoBehaviour {
         originalColor = m_renderer.material.color;
         channels = FindObjectOfType<ChannelController>();
         areaTracker = this.transform.parent.GetComponent<AreaTracker>();
+        areaTracker.ShowLeaf();
     }
 
     void OnMouseOver()

@@ -7,7 +7,7 @@ public class RadioTimer : MonoBehaviour {
 
     public static RadioTimer instance;
     public TextMesh timerText;
-    private float timeElapsed = 0.0f;
+    private float timeElapsed = 30.0f;
     private bool timerRunning = false;
     bool startedTimerFirstTime = false;
     bool resetFirstTime = false;
@@ -31,7 +31,7 @@ public class RadioTimer : MonoBehaviour {
 
     public void ResetTimer() {
         StopTimer();
-        timeElapsed = 0.0f;
+        timeElapsed = 30.0f;
     }
 
     private int ConvertToHour(int minutes) {
@@ -42,17 +42,17 @@ public class RadioTimer : MonoBehaviour {
         return minutes;
     }
 
-    int prevSecondsDisplayed = 0;
+    int prevSecondsDisplayed = 30;
 	// Update is called once per frame
 	void Update () {
         if (!resetFirstTime && GameManager.Instance.gameStateMachine.currentState == StateType.Off)
         {
             resetFirstTime = true;
             ResetTimer();
-            prevSecondsDisplayed = 0;
+            prevSecondsDisplayed = 30;
             GameManager.Instance.ResetCops();
         }
-        if (!startedTimerFirstTime && GameManager.Instance.gameStateMachine.currentState == StateType.WeedManIntro)
+        if (!startedTimerFirstTime && GameManager.Instance.gameStateMachine.currentState == StateType.Playing)
         {
             startedTimerFirstTime = true;
             StartTimer();
