@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Map : MonoBehaviour {
+public class AreaController : MonoBehaviour {
 
     Color originalColor;
     MeshRenderer m_renderer;
@@ -31,6 +31,8 @@ public class Map : MonoBehaviour {
         {
             channels.InterruptWeedman();
             //TODO move Van here, if it's not here already
+            List <AreaController> areas = this.transform.parent.GetComponent<AreaTracker>().areas;
+            GameManager.Instance.gameStateMachine.MoveWeedVan(areas.IndexOf(this));
         }
     }
 
