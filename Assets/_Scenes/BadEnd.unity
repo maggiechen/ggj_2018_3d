@@ -201,22 +201,32 @@ Prefab:
     - target: {fileID: 224198714648137816, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 1949
+      value: 560
       objectReference: {fileID: 0}
     - target: {fileID: 224198714648137816, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 474
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114286550570750728, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_Text
-      value: "\n\n\n\n\n\n\n\n\n\nYou lose. \nThe cybercops caught Weed Man, making
-        him just like one of the 140,000 people behind bars in the United States on
-        simple drug possession charges, according to the Human Rights Watch.\n\nFurthermore,
-        despite statistically equal usage across all social groups, African Americans
-        are 3.7 times more likely to face incarceration.\n\nDonate to your local civil
-        rights org today.\n\nCyberpress CyberSpace to cyberrestart."
+      value: "\n\n\n\n\n\n\n\n\n\nYou lose. \n\nThe cybercops caught Weed Man, \nmaking
+        him just like one of the \n140,000 people behind bars in \nthe United States
+        on simple drug possession charges, \naccording to the Human Rights Watch.\n\nFurthermore,
+        despite statistically \nequal usage across all social groups,\nAfrican Americans
+        are 3.7 times\nmore likely to face incarceration.\n\nDonate to your local
+        nonprofit today.\n\nCyberpress CyberSpace to cyberrestart."
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813289337932748, guid: 504a39508a95f1841af4aeb68114dc21,
+        type: 2}
+      propertyPath: m_HorizontalFit
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286550570750728, guid: 504a39508a95f1841af4aeb68114dc21,
+        type: 2}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 504a39508a95f1841af4aeb68114dc21, type: 2}

@@ -10,6 +10,7 @@ public class DialRotation : MonoBehaviour {
     public TextMesh frequency;
 
     private static float currentFrequency;
+    private static bool dialLocked = false;
 
     private float WrapAngle(float angle)
     {
@@ -47,20 +48,32 @@ public class DialRotation : MonoBehaviour {
         return currentFrequency;
     }
 
+    public static bool DialLocked()
+    {
+        return dialLocked;
+    }
+
 	// Update is called once per frame
 	void Update () {
         float angle = WrapAngle(gameObject.transform.localRotation.eulerAngles.z);
         MoveSlider(angle);
         UpdateFrequency(angle);
-        if (Input.GetKey(KeyCode.LeftArrow) && angle < 90f) 
-        {
-            gameObject.transform.Rotate(0f, 0f, RotationSpeed);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow) && angle > -90f)
-        {
-            gameObject.transform.Rotate(0f, 0f, -RotationSpeed);
-        }
 
+        dialLocked = GameManager.Instance.gameStateMachine.currentState == StateType.Off 
+            || GameManager.Instance.gameStateMachine.currentState == StateType.Intro 
+            || GameManager.Instance.gameStateMachine.currentState == StateType.WeedManIntro;
+
+        if (!dialLocked)
+        {
+            if ( (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && angle < 90f)
+            {
+                gameObject.transform.Rotate(0f, 0f, RotationSpeed);
+            }
+            else if ((Input.GetKey(KeyCode.RightArrow ) || Input.GetKey(KeyCode.D)) && angle > -90f)
+            {
+                gameObject.transform.Rotate(0f, 0f, -RotationSpeed);
+            }
+        }
 	}
         
 }

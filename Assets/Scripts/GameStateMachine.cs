@@ -9,7 +9,7 @@ public class GameStateMachine
     {
         {StateType.Intro, new IntroState()},
         {StateType.Off, new OffState()},
-        {StateType.WeedManTalking, new WeedManTalkingState()},
+        {StateType.WeedManIntro, new WeedManIntroState()},
         {StateType.Playing, new PlayingState()},
         {StateType.Paused, new PausedState()},
         {StateType.BadEnd, new BadEndState()},
@@ -59,7 +59,7 @@ public enum StateType
     Paused,
     BadEnd,
     GoodEnd,
-    WeedManTalking,
+    WeedManIntro,
     Playing
 }
 
@@ -81,11 +81,11 @@ public class OffState : GameState
 {
     public StateType GetNextState(GameStateMachine sm)
     {
-        return StateType.WeedManTalking;
+        return StateType.WeedManIntro;
     }
 }
 
-public class WeedManTalkingState : GameState
+public class WeedManIntroState : GameState
 {
     public StateType GetNextState(GameStateMachine sm)
     {

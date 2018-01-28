@@ -15,7 +15,7 @@ public class TextFlickerController : MonoBehaviour {
 
     void Update()
     {
-        if (!displayed && GameManager.Instance.gameStateMachine.currentState == StateType.WeedManTalking)
+        if (!displayed && GameManager.Instance.gameStateMachine.currentState == StateType.WeedManIntro)
         {
             displayed = true;
             FlickerOn();
