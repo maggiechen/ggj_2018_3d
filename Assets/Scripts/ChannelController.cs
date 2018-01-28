@@ -21,9 +21,7 @@ public class ChannelController : MonoBehaviour {
 
     private bool loopWeedmanRants = false;
     private int weedmanLoopIndex = 1; //or 2
-    private int policeIndex1 = 0;
-    private int policeIndex2 = 0;
-    private int policeIndex3 = 0;
+    private int[] currentPoliceClipIndex;
     private int weedmanResponseIndex = 3; //to 5
 
     public bool TalkingToWeedman = false;
@@ -47,6 +45,7 @@ public class ChannelController : MonoBehaviour {
         radioSFX = Resources.LoadAll<AudioClip>("Sounds/SFX");
         weedmanClips = Resources.LoadAll<AudioClip>(VO_PATH + "Weedman");
         policeClips = new AudioClip[TOTAL_POLICE_CHANNELS][];
+        currentPoliceClipIndex = new int[TOTAL_POLICE_CHANNELS];
 
         for (int p = 0; p < TOTAL_POLICE_CHANNELS; p++)
         {
@@ -113,42 +112,23 @@ public class ChannelController : MonoBehaviour {
 
     private void AdvancePoliceIndex(int channel)
     {
-        int index = 0;
-        switch (channel) {
-        case 0:
-            if (policeIndex1 > policeClips [channel].Length)
-                policeIndex1 = 0;
-            else
-                policeIndex1++;
-            index = policeIndex1;
-            break;
-
-        case 1:
-            if (policeIndex2 > policeClips [channel].Length)
-                policeIndex2 = 0;
-            else
-                policeIndex2++;
-            index = policeIndex2;
-            break;
-
-        case 2:
-            if (policeIndex3 > policeClips [channel].Length)
-                policeIndex3 = 0;
-            else
-                policeIndex3++;
-            index = policeIndex3;
-            break;
-        default:
-            break;
+        int nextIndex = 0;
+        currentPoliceClipIndex[channel]++;
+        if (currentPoliceClipIndex[channel] >= policeClips[channel].Length)
+        {
+            currentPoliceClipIndex[channel] = 0;
         }
-        Debug.Log ("Channel: " + channel + " Index: " + index);
-        radioChannels [channel].clip = policeClips [channel] [index];
+
+        nextIndex = currentPoliceClipIndex[channel];
+
+        Debug.Log ("Channel: " + channel + " Index: " + nextIndex);
+        radioChannels [channel].clip = policeClips [channel] [nextIndex];
                 
         AudioSource police = radioChannels[channel];
         police.Play();
 
     }
-	
+
     //returns 0 - 2 for police channels
     //        3 for weed
     //       -1 for nothing
@@ -231,7 +211,7 @@ public class ChannelController : MonoBehaviour {
        
         //Police channels
         for (int p = 0; p < TOTAL_POLICE_CHANNELS; p++) {
-            if (!radioChannels [p].isPlaying) {
+            if (!DialRotation.DialLocked() && !radioChannels[p].isPlaying) {
                 AdvancePoliceIndex (p);
             }
         }
