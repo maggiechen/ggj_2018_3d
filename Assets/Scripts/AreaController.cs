@@ -50,6 +50,8 @@ public class AreaController : MonoBehaviour {
             areaTracker.DisableAllAreas();
             selected = true;
             SetMaterial(selectedMaterial);
+            areaTracker.SetLeafPosition(this.gameObject.transform.position.x,
+                                        this.gameObject.transform.position.y);
             channels.InterruptWeedman();
             //TODO move Van here, if it's not here already
             List <AreaController> areas = areaTracker.areas;
