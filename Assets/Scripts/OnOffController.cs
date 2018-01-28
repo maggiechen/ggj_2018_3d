@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OnOffController : MonoBehaviour {
+    ChannelController channels;
+
+    void Start()
+    {
+        channels = FindObjectOfType<ChannelController>();
+    }
 
     private void OnMouseDown()
     {
@@ -14,6 +20,7 @@ public class OnOffController : MonoBehaviour {
         if (GameManager.Instance.gameStateMachine.currentState == StateType.Off)
         {
             GameManager.Instance.gameStateMachine.AdvanceState();
+            channels.TriggerIntro();
         } else
         {
             Debug.Log("Performing Quit");

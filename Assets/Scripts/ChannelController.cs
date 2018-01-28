@@ -17,7 +17,7 @@ public class ChannelController : MonoBehaviour {
     private const float VOL_DELTA = 0.1f;
     private const int POLICE_CHANNELS = 3;
     private const int RADIO_SFX_SOURCES = 2;
-    private const int WEEDMAN_CONST = 5;
+    private const int WEEDMAN_SOURCE = 3;
  
     void Start () {
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -43,27 +43,45 @@ public class ChannelController : MonoBehaviour {
             string path = VO_PATH + "Channel" + (p + 1);
             policeClips[p] = Resources.LoadAll<AudioClip>(path);
 
-            assignClipToSourceAndPlay(policeClips[p][0], radioChannels[p]);
+            assignClipToSource(policeClips[p][0], radioChannels[p]);
         }
-        assignClipToSourceAndPlay(weedmanClips[0], radioChannels[POLICE_CHANNELS]);
+        assignClipToSource(weedmanClips[0], radioChannels[WEEDMAN_SOURCE]);
 
         assignClipToSourceAndPlay(radioSFX[0], RadioStatic);
         assignClipToSourceAndPlay(radioSFX[1], RadioTuning);
     }
 
-    private void assignClipToSourceAndPlay(AudioClip clip, AudioSource source)
+    private void assignClipToSource(AudioClip clip, AudioSource source)
     {
         source.clip = clip;
         source.volume = 0;
-        source.loop = true;
-
-        //source.Play();
     }
 
-    public void PlayIntro()
+    private void assignClipToSourceAndPlay(AudioClip clip, AudioSource source)
     {
-        
+        assignClipToSource(clip, source);
+        source.loop = true;
+        source.Play();
+    }
 
+    public void TriggerIntro()
+    {
+        radioChannels[WEEDMAN_SOURCE].volume = 1;
+        radioChannels[WEEDMAN_SOURCE].Play();
+        Invoke("FinishedIntro", weedmanClips[0].length);
+    }
+
+    public void FinishedIntro()
+    {
+        if(GameManager.Instance.gameStateMachine.currentState == StateType.WeedManTalking)
+        {
+            GameManager.Instance.gameStateMachine.AdvanceState();
+        }
+
+        foreach(AudioSource police in radioChannels)
+        {
+            police.Play();
+        }
     }
 	
     //returns 0 - 2 for police channels
@@ -87,6 +105,7 @@ public class ChannelController : MonoBehaviour {
 	void Update () {
         bool dialMoving = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
         int currentChannel = ReturnChannel(DialRotation.GetFrequency());
+
 
         if (dialMoving)
         {
