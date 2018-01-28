@@ -23,8 +23,8 @@ public class GameStateMachine
     public bool bad;
 
     List<int> locations = new List<int> { 0, 0, 0, 0};
-    int weedVanLocation;
-    int weedVanPrevLocation;
+    int weedVanLocation = 0;
+    int weedVanPrevLocation = 0;
 
     public void MoveWeedVan(int newLocation)
     {
