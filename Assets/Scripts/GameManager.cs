@@ -17,8 +17,13 @@ public class GameManager {
                 instance = new GameManager();
                 instance.copMovementIndex = 0;
                 // populate cop movements
+                
+                // 00:00
+                Dictionary<int, int> copMoves = new Dictionary<int, int> { };
+                instance.copMovementsByInterval.Add(copMoves);
+
                 // 00:30
-                Dictionary<int, int> copMoves = new Dictionary<int, int>
+                copMoves = new Dictionary<int, int>
                 {
                     { 3, 1 }
                 };
@@ -108,6 +113,7 @@ public class GameManager {
 
     public void AdvanceCopMovements()
     {
+        Debug.Log(copMovementIndex.ToString() + " " + copMovementsByInterval.Count.ToString());
         if (copMovementIndex == copMovementsByInterval.Count)
         {
             if (gameStateMachine.currentState == StateType.Playing)
