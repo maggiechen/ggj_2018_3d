@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -441,7 +441,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 687008310
+  randomSeed: -1473191771
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3826,27 +3826,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &929742345 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1823951867441560, guid: 504a39508a95f1841af4aeb68114dc21,
-    type: 2}
-  m_PrefabInternal: {fileID: 1247846877}
---- !u!114 &929742346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 929742345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c4433c4bb57e184d9cc2ad00e1cd419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smoothr: 10
-  smoothp: 10
-  tiltAngle: 3
-  moveAmount: 1
-  timeOut: 100
 --- !u!1001 &988660731
 Prefab:
   m_ObjectHideFlags: 0
@@ -4000,25 +3979,6 @@ Prefab:
     - target: {fileID: 4926079879438274, guid: 504a39508a95f1841af4aeb68114dc21, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224198714648137816, guid: 504a39508a95f1841af4aeb68114dc21,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 297
-      objectReference: {fileID: 0}
-    - target: {fileID: 224198714648137816, guid: 504a39508a95f1841af4aeb68114dc21,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 444
-      objectReference: {fileID: 0}
-    - target: {fileID: 4926079879438274, guid: 504a39508a95f1841af4aeb68114dc21, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -2.69
-      objectReference: {fileID: 0}
-    - target: {fileID: 20359647617075274, guid: 504a39508a95f1841af4aeb68114dc21,
-        type: 2}
-      propertyPath: orthographic
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 504a39508a95f1841af4aeb68114dc21, type: 2}

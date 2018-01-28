@@ -13,12 +13,14 @@ public class CameraController : MonoBehaviour {
     private float lastMovementTimestamp;
     private Vector3 basePosition;
     private Quaternion baseRotation;
+    public ScreenFaderController screenFaderController;
 
 
     private void Start() {
         baseRotation = gameObject.transform.rotation;
         basePosition = gameObject.transform.position;
         lastMovementTimestamp = -timeOut;
+        screenFaderController.StartFadingToClear();
     }
 
     // Update is called once per frame
