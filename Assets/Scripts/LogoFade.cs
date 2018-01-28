@@ -7,6 +7,7 @@ public class LogoFade : MonoBehaviour {
 
     private float fadeDuration = 5.0f;
     public Image logo;
+    public Image controls;
     public Camera myCam;
 
     private Coroutine myCoroutine;
@@ -20,6 +21,7 @@ public class LogoFade : MonoBehaviour {
         }
 
         logo.canvasRenderer.SetAlpha(0.0f);
+        controls.canvasRenderer.SetAlpha(0.0f);
         myCam.gameObject.SetActive(true);
         myCoroutine = StartCoroutine((FadeCoroutine()));
 
@@ -38,9 +40,11 @@ public class LogoFade : MonoBehaviour {
     IEnumerator FadeCoroutine() {
         yield return new WaitForSeconds(1.0f);
         logo.CrossFadeAlpha(1.0f, fadeDuration / 2f, false);
+        controls.CrossFadeAlpha(1.0f, fadeDuration / 2f, false);
         yield return new WaitForSeconds(fadeDuration / 2f);
         yield return new WaitForSeconds(3.0f);
         logo.CrossFadeAlpha(0.0f, fadeDuration / 2f, false);
+        controls.CrossFadeAlpha(0.0f, fadeDuration / 2f, false);
         yield return new WaitForSeconds(fadeDuration / 2f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainGame");
     }

@@ -52,7 +52,7 @@ public class RadioTimer : MonoBehaviour {
             prevSecondsDisplayed = 30;
             GameManager.Instance.ResetCops();
         }
-        if (!startedTimerFirstTime && GameManager.Instance.gameStateMachine.currentState == StateType.Playing)
+        if (!startedTimerFirstTime && GameManager.Instance.gameStateMachine.currentState == StateType.WeedManIntro)
         {
             startedTimerFirstTime = true;
             StartTimer();
