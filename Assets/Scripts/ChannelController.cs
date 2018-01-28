@@ -136,7 +136,8 @@ public class ChannelController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        bool dialMoving = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
+        bool dialMoving = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) 
+            || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
         int currentChannel = ReturnChannel(DialRotation.GetFrequency());
 
         if (!DialRotation.DialLocked())

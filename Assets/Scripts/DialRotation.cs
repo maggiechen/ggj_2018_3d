@@ -65,11 +65,11 @@ public class DialRotation : MonoBehaviour {
 
         if (!dialLocked)
         {
-            if (Input.GetKey(KeyCode.LeftArrow) && angle < 90f)
+            if ( (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && angle < 90f)
             {
                 gameObject.transform.Rotate(0f, 0f, RotationSpeed);
             }
-            else if (Input.GetKey(KeyCode.RightArrow) && angle > -90f)
+            else if ((Input.GetKey(KeyCode.RightArrow ) || Input.GetKey(KeyCode.D)) && angle > -90f)
             {
                 gameObject.transform.Rotate(0f, 0f, -RotationSpeed);
             }
