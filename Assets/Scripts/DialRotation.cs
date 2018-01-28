@@ -43,7 +43,7 @@ public class DialRotation : MonoBehaviour {
         }
         else
             GameObject.Find("FreqText").GetComponent<TextMesh>().color= inactiveTextColor;
-        frequency.text = (myFrequency).ToString ();
+        frequency.text = (myFrequency).ToString ("f2");
         currentFrequency = myFrequency;
     }
 

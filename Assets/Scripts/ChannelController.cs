@@ -25,8 +25,12 @@ public class ChannelController : MonoBehaviour {
     private int weedmanResponseIndex = 3; //to 5
 
     public bool TalkingToWeedman = false;
+
+    private WeedAlert weedAlert;
  
     void Start () {
+        weedAlert = GameObject.FindObjectOfType<WeedAlert>();
+
         AudioSource[] audioSources = GetComponents<AudioSource>();
 
         totalAudioSources = audioSources.Length;
@@ -39,6 +43,7 @@ public class ChannelController : MonoBehaviour {
         for (int c = 0; c < totalAudioSources - TOTAL_RADIO_SFX; c++)
         {
             radioChannels[c] = audioSources[c + TOTAL_RADIO_SFX];
+            radioChannels[c].Stop();
         }
         
 
@@ -86,7 +91,12 @@ public class ChannelController : MonoBehaviour {
         {
             GameManager.Instance.gameStateMachine.AdvanceState();
         }
-            
+
+        for (int p = 0; p < TOTAL_POLICE_CHANNELS; p++)
+        {
+            radioChannels[p].Play();
+        }
+
         radioChannels[WEEDMAN_CHANNEL].loop = false;
         radioChannels[WEEDMAN_CHANNEL].Stop();
     }
@@ -151,6 +161,10 @@ public class ChannelController : MonoBehaviour {
     {
         bool dialMoving = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) 
             || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
+
+        bool radioOffOrIntroPlaying = GameManager.Instance.gameStateMachine.currentState == StateType.Off
+                || GameManager.Instance.gameStateMachine.currentState == StateType.Intro;
+
         int currentChannel = ReturnChannel(DialRotation.GetFrequency());
 
         if (!DialRotation.DialLocked())
@@ -174,19 +188,22 @@ public class ChannelController : MonoBehaviour {
             {
                 RadioStatic.volume -= VOL_DELTA;
             }
+            //Switched AWAY from WEEDMAN_CHANNEL
             if (currentChannel != WEEDMAN_CHANNEL)
             {
                 loopWeedmanRants = true;
                 TalkingToWeedman = false;
+                weedAlert.StopWeedAlarm();
             }
         }
         else
         {
-            //Static, make the channels quieter
+            //In between channels, play static
             if (RadioStatic.volume < 0.5)
             {
                 RadioStatic.volume += VOL_DELTA;
             }
+            // and make stations quiet
             foreach (AudioSource radioChannel in radioChannels)
             {
                 if (radioChannel.volume > 0)
@@ -194,13 +211,19 @@ public class ChannelController : MonoBehaviour {
                     radioChannel.volume -= VOL_DELTA;
                 }
             }
+            weedAlert.StopWeedAlarm();
         }
 
+        //Switched TO WEEDMAN_CHANNEL
         if (currentChannel == WEEDMAN_CHANNEL)
         {
             //TODO: check if a pin was placed/button was pressed and give a stock response.
             radioChannels[WEEDMAN_CHANNEL].volume += VOL_DELTA;
             TalkingToWeedman = true;
+            if (!radioOffOrIntroPlaying)
+            {
+                weedAlert.StartWeedAlarm();
+            }
         }
 
         //Check for weedman rant loops
@@ -208,11 +231,13 @@ public class ChannelController : MonoBehaviour {
         {
             changeWeedmanLoopIndex();
         }
-       
+
         //Police channels
-        for (int p = 0; p < TOTAL_POLICE_CHANNELS; p++) {
-            if (!DialRotation.DialLocked() && !radioChannels[p].isPlaying) {
-                AdvancePoliceIndex (p);
+        if (!radioOffOrIntroPlaying && GameManager.Instance.gameStateMachine.currentState != StateType.WeedManIntro) {
+            for (int p = 0; p < TOTAL_POLICE_CHANNELS; p++) {
+                if (!radioChannels[p].isPlaying) {
+                    AdvancePoliceIndex(p);
+                }
             }
         }
     }

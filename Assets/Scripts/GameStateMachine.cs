@@ -22,7 +22,7 @@ public class GameStateMachine
     public bool pauseRequested;
     public bool bad;
 
-    List<int> locations = new List<int> { 0, 0, 0, 0};
+    public List<int> locations = new List<int> { 0, 0, 0, 0};
     int weedVanLocation = 0;
     int weedVanPrevLocation = 0;
 
@@ -36,23 +36,25 @@ public class GameStateMachine
             AdvanceState();
         }
     }
-
-    public void InsertAtLocation(int location)
+    
+    public void UpdateCops(int location, int delta)
     {
-        locations[location]++;
-        if (weedVanLocation == location)
+        if (delta == 0)
+        {
+            location = weedVanPrevLocation;
+            delta = 1;
+        }
+
+        locations[location] += delta;
+        if (locations[location] < 0)
+        {
+            throw new Exception("what the cyber can you count?!! Negative cops at: " + location);
+        }
+        
+        if (delta > 0 && weedVanLocation == location)
         {
             bad = true;
             AdvanceState();
-        }
-    }
-
-    public void DeleteCop(int from)
-    {
-        locations[from]--;
-        if (locations[from] < 0)
-        {
-            throw new Exception("what the cyber can you count?!!");
         }
     }
 
