@@ -25,8 +25,12 @@ public class ChannelController : MonoBehaviour {
     private int weedmanResponseIndex = 3; //to 5
 
     public bool TalkingToWeedman = false;
+
+    private WeedAlert weedAlert;
  
     void Start () {
+        weedAlert = GameObject.FindObjectOfType<WeedAlert>();
+
         AudioSource[] audioSources = GetComponents<AudioSource>();
 
         totalAudioSources = audioSources.Length;
@@ -174,19 +178,22 @@ public class ChannelController : MonoBehaviour {
             {
                 RadioStatic.volume -= VOL_DELTA;
             }
+            //Switched AWAY from WEEDMAN_CHANNEL
             if (currentChannel != WEEDMAN_CHANNEL)
             {
                 loopWeedmanRants = true;
                 TalkingToWeedman = false;
+                weedAlert.StopWeedAlarm();
             }
         }
         else
         {
-            //Static, make the channels quieter
+            //In between channels, play static
             if (RadioStatic.volume < 0.5)
             {
                 RadioStatic.volume += VOL_DELTA;
             }
+            // and make stations quiet
             foreach (AudioSource radioChannel in radioChannels)
             {
                 if (radioChannel.volume > 0)
@@ -194,13 +201,17 @@ public class ChannelController : MonoBehaviour {
                     radioChannel.volume -= VOL_DELTA;
                 }
             }
+            weedAlert.StopWeedAlarm();
         }
 
+        //Switched TO WEEDMAN_CHANNEL
         if (currentChannel == WEEDMAN_CHANNEL)
         {
             //TODO: check if a pin was placed/button was pressed and give a stock response.
             radioChannels[WEEDMAN_CHANNEL].volume += VOL_DELTA;
             TalkingToWeedman = true;
+            weedAlert.StartWeedAlarm();
+            
         }
 
         //Check for weedman rant loops

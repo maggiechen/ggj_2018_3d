@@ -42,11 +42,6 @@ public class WeedAlert : MonoBehaviour {
             }
             
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            weedAlertOn = !weedAlertOn;
-            m_renderer.material.color = originalColor;
-        }
     }
 
     public void StartWeedAlarm()
