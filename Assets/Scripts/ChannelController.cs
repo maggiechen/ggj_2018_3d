@@ -88,9 +88,9 @@ public class ChannelController : MonoBehaviour {
             police.loop = true;
             police.Play();
         }
-        loopWeedmanRants = true;
+
         radioChannels[WEEDMAN_CHANNEL].loop = false;
-        changeWeedmanLoopIndex();
+        radioChannels[WEEDMAN_CHANNEL].Stop();
     }
 
     private void changeWeedmanLoopIndex()
@@ -124,23 +124,13 @@ public class ChannelController : MonoBehaviour {
     }
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         bool dialMoving = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
         int currentChannel = ReturnChannel(DialRotation.GetFrequency());
 
+        handleTuningSound(dialMoving);
 
-        if (dialMoving)
-        {
-            if (RadioTuning.volume < 1)
-            {
-                RadioTuning.volume += VOL_DELTA;
-            }
-        }else
-        {
-            RadioTuning.volume -= VOL_DELTA;
-        }
-
-        
         if (currentChannel >= 0)
         {
             //Dial can hear a radio station
@@ -157,11 +147,15 @@ public class ChannelController : MonoBehaviour {
             {
                 RadioStatic.volume -= VOL_DELTA;
             }
+            if (currentChannel != WEEDMAN_CHANNEL)
+            {
+                loopWeedmanRants = true;
+            }
         }
         else
         {
             //Static, make the channels quieter
-            if(RadioStatic.volume < 1)
+            if (RadioStatic.volume < 0.7)
             {
                 RadioStatic.volume += VOL_DELTA;
             }
@@ -174,16 +168,39 @@ public class ChannelController : MonoBehaviour {
             }
         }
 
-        if (currentChannel == 3)
+        if (currentChannel == WEEDMAN_CHANNEL)
         {
             //TODO: check if a pin was placed/button was pressed and give a stock response.
-            radioChannels[currentChannel].volume+=VOL_DELTA;
+            radioChannels[WEEDMAN_CHANNEL].volume += VOL_DELTA;
         }
 
+        //Check for weedman rant loops
         if (loopWeedmanRants && !radioChannels[WEEDMAN_CHANNEL].isPlaying)
         {
             changeWeedmanLoopIndex();
         }
-	}
+        //TODO testing interrupts
+        if (Input.GetKey(KeyCode.Space))
+        {
+            radioChannels[WEEDMAN_CHANNEL].Stop();
+            loopWeedmanRants = false;
+            radioChannels[WEEDMAN_CHANNEL].clip = weedmanClips[3];
+            radioChannels[WEEDMAN_CHANNEL].Play();
+        }
+    }
 
+    private void handleTuningSound(bool dialMoving)
+    {
+        if (dialMoving)
+        {
+            if (RadioTuning.volume < 0.7)
+            {
+                RadioTuning.volume += VOL_DELTA;
+            }
+        }
+        else
+        {
+            RadioTuning.volume -= VOL_DELTA;
+        }
+    }
 }
