@@ -95,6 +95,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4806785303634914}
+  - component: {fileID: 114566108383193020}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -427,3 +428,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e532d85f0fa1e4f9a5ea137c7662c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114566108383193020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1874045031329648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5280219be589c614faeff841b3f25968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areas:
+  - {fileID: 114540324152338542}
+  - {fileID: 114319103902608774}
+  - {fileID: 114514279569176508}
+  - {fileID: 114111927656127654}

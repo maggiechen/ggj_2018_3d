@@ -22,6 +22,40 @@ public class GameStateMachine
     public bool pauseRequested;
     public bool bad;
 
+    List<int> locations = new List<int> { 0, 0, 0, 0};
+    int weedVanLocation;
+
+    public void MoveWeedVan(int newLocation)
+    {
+        weedVanLocation = newLocation;
+        if(locations[newLocation] > 0)
+        {
+            bad = true;
+            AdvanceState();
+        }
+    }
+
+    public void InsertAtLocation(int location)
+    {
+        locations[location]++;
+        if (weedVanLocation == location)
+        {
+            bad = true;
+            AdvanceState();
+        }
+    }
+
+    public void MoveCop(int from, int to)
+    {
+        locations[from]--;
+        if (locations[from] < 0)
+        {
+            throw new Exception("what the cyber can you count?!!");
+        }
+
+        InsertAtLocation(to);
+    }
+
     public GameStateMachine()
     {
         Debug.Log("State is now: Intro");
