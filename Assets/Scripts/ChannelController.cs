@@ -210,8 +210,11 @@ public class ChannelController : MonoBehaviour {
             //TODO: check if a pin was placed/button was pressed and give a stock response.
             radioChannels[WEEDMAN_CHANNEL].volume += VOL_DELTA;
             TalkingToWeedman = true;
-            weedAlert.StartWeedAlarm();
-            
+            if (GameManager.Instance.gameStateMachine.currentState != StateType.Off 
+                && GameManager.Instance.gameStateMachine.currentState != StateType.Intro)
+            {
+                weedAlert.StartWeedAlarm();
+            }
         }
 
         //Check for weedman rant loops
