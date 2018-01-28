@@ -32,11 +32,6 @@ public class RadioTimer : MonoBehaviour {
         StopTimer();
         timeElapsed = 0.0f;
     }
-
-    public int GetTime()
-    {
-        return Mathf.RoundToInt(timeElapsed);
-    }
 	
 	// Update is called once per frame
 	void Update () {
