@@ -233,7 +233,7 @@ public class ChannelController : MonoBehaviour {
         }
 
         //Police channels
-        if (!radioOffOrIntroPlaying && GameManager.Instance.gameStateMachine.currentState != StateType.WeedManIntro) {
+        if (GameManager.Instance.gameStateMachine.currentState == StateType.Playing) {
             for (int p = 0; p < TOTAL_POLICE_CHANNELS; p++) {
                 if (!radioChannels[p].isPlaying) {
                     AdvancePoliceIndex(p);
