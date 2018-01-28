@@ -30,8 +30,8 @@ public class CameraController : MonoBehaviour {
             lastMovementTimestamp = Time.time;
         }
 
-        float ratioX = (Input.mousePosition.x / Screen.width) - 0.5F;
-        float ratioY = (Input.mousePosition.y / Screen.height) - 0.5F;
+        float ratioX = Mathf.Clamp((Input.mousePosition.x / Screen.width), 0F, 1F) - 0.5F;
+        float ratioY = Mathf.Clamp((Input.mousePosition.y / Screen.height), 0F, 1F) - 0.5F;
 
         if (Time.time - lastMovementTimestamp > timeOut) {
             transform.rotation = Quaternion.Slerp(transform.rotation, baseRotation, Time.deltaTime * smoothr/4);
