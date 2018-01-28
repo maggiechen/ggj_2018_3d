@@ -93,6 +93,12 @@ public class ChannelController : MonoBehaviour {
         radioChannels[WEEDMAN_CHANNEL].Stop();
     }
 
+    public void SkipIntro()
+    {
+        CancelInvoke("FinishedIntro");
+        FinishedIntro();
+    }
+
     private void changeWeedmanLoopIndex()
     {
         radioChannels[WEEDMAN_CHANNEL].clip = weedmanClips[weedmanLoopIndex];
@@ -129,8 +135,11 @@ public class ChannelController : MonoBehaviour {
         bool dialMoving = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
         int currentChannel = ReturnChannel(DialRotation.GetFrequency());
 
-        handleTuningSound(dialMoving);
-
+        if (!DialRotation.DialLocked())
+        {
+            handleTuningSound(dialMoving);
+        }
+        
         if (currentChannel >= 0)
         {
             //Dial can hear a radio station
@@ -155,7 +164,7 @@ public class ChannelController : MonoBehaviour {
         else
         {
             //Static, make the channels quieter
-            if (RadioStatic.volume < 0.7)
+            if (RadioStatic.volume < 0.5)
             {
                 RadioStatic.volume += VOL_DELTA;
             }
@@ -193,7 +202,7 @@ public class ChannelController : MonoBehaviour {
     {
         if (dialMoving)
         {
-            if (RadioTuning.volume < 0.7)
+            if (RadioTuning.volume < 0.5)
             {
                 RadioTuning.volume += VOL_DELTA;
             }
