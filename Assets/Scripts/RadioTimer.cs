@@ -49,7 +49,7 @@ public class RadioTimer : MonoBehaviour {
         if (timerRunning) {
             timeElapsed += Time.deltaTime;
             int minutes = (int)Mathf.Floor(timeElapsed / 60f);
-            int seconds = Mathf.RoundToInt(timeElapsed % 60f);
+            int seconds = (int)Mathf.Floor(timeElapsed % 60f);
             string minutesText = (minutes < 10) ? "0" + minutes.ToString() : minutes.ToString();
             string secondsText = (seconds < 10) ? "0" + seconds.ToString() : seconds.ToString();
             timerText.text = minutesText + ":" + secondsText;
