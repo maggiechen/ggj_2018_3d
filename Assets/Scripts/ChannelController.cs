@@ -93,6 +93,12 @@ public class ChannelController : MonoBehaviour {
         radioChannels[WEEDMAN_CHANNEL].Stop();
     }
 
+    public void SkipIntro()
+    {
+        CancelInvoke("FinishedIntro");
+        FinishedIntro();
+    }
+
     private void changeWeedmanLoopIndex()
     {
         radioChannels[WEEDMAN_CHANNEL].clip = weedmanClips[weedmanLoopIndex];
