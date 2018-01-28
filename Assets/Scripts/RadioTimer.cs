@@ -10,8 +10,9 @@ public class RadioTimer : MonoBehaviour {
     private float timeElapsed = 0.0f;
     private bool timerRunning = false;
     bool startedTimerFirstTime = false;
-	// Use this for initialization
-	void Start () {
+    bool resetFirstTime = false;
+    // Use this for initialization
+    void Start () {
         if (instance == null) {
             instance = this;
         }
@@ -44,6 +45,13 @@ public class RadioTimer : MonoBehaviour {
     int prevSecondsDisplayed = 0;
 	// Update is called once per frame
 	void Update () {
+        if (!resetFirstTime && GameManager.Instance.gameStateMachine.currentState == StateType.Off)
+        {
+            resetFirstTime = true;
+            ResetTimer();
+            prevSecondsDisplayed = 0;
+            GameManager.Instance.ResetCops();
+        }
         if (!startedTimerFirstTime && GameManager.Instance.gameStateMachine.currentState == StateType.Playing)
         {
             startedTimerFirstTime = true;

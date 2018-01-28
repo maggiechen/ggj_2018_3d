@@ -96,6 +96,16 @@ public class GameManager {
         }
     }
 
+    public void ResetCops()
+    {
+        instance.copMovementIndex = 0;
+        for(int i = 0; i < gameStateMachine.locations.Capacity; i++)
+        {
+            gameStateMachine.locations[i] = 0;
+        }
+        Debug.Log("Cops reset");
+    }
+
     public void AdvanceCopMovements()
     {
         if (copMovementIndex == copMovementsByInterval.Count)
