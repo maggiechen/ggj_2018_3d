@@ -43,6 +43,7 @@ public class ChannelController : MonoBehaviour {
         for (int c = 0; c < totalAudioSources - TOTAL_RADIO_SFX; c++)
         {
             radioChannels[c] = audioSources[c + TOTAL_RADIO_SFX];
+            radioChannels[c].Stop();
         }
         
 
@@ -90,7 +91,12 @@ public class ChannelController : MonoBehaviour {
         {
             GameManager.Instance.gameStateMachine.AdvanceState();
         }
-            
+
+        for (int p = 0; p < TOTAL_POLICE_CHANNELS; p++)
+        {
+            radioChannels[p].Play();
+        }
+
         radioChannels[WEEDMAN_CHANNEL].loop = false;
         radioChannels[WEEDMAN_CHANNEL].Stop();
     }
@@ -155,6 +161,10 @@ public class ChannelController : MonoBehaviour {
     {
         bool dialMoving = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) 
             || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
+
+        bool radioOffOrIntroPlaying = GameManager.Instance.gameStateMachine.currentState == StateType.Off
+                || GameManager.Instance.gameStateMachine.currentState == StateType.Intro;
+
         int currentChannel = ReturnChannel(DialRotation.GetFrequency());
 
         if (!DialRotation.DialLocked())
@@ -210,8 +220,7 @@ public class ChannelController : MonoBehaviour {
             //TODO: check if a pin was placed/button was pressed and give a stock response.
             radioChannels[WEEDMAN_CHANNEL].volume += VOL_DELTA;
             TalkingToWeedman = true;
-            if (GameManager.Instance.gameStateMachine.currentState != StateType.Off 
-                && GameManager.Instance.gameStateMachine.currentState != StateType.Intro)
+            if (!radioOffOrIntroPlaying)
             {
                 weedAlert.StartWeedAlarm();
             }
@@ -222,11 +231,13 @@ public class ChannelController : MonoBehaviour {
         {
             changeWeedmanLoopIndex();
         }
-       
+
         //Police channels
-        for (int p = 0; p < TOTAL_POLICE_CHANNELS; p++) {
-            if (!DialRotation.DialLocked() && !radioChannels[p].isPlaying) {
-                AdvancePoliceIndex (p);
+        if (!radioOffOrIntroPlaying && GameManager.Instance.gameStateMachine.currentState != StateType.WeedManIntro) {
+            for (int p = 0; p < TOTAL_POLICE_CHANNELS; p++) {
+                if (!radioChannels[p].isPlaying) {
+                    AdvancePoliceIndex(p);
+                }
             }
         }
     }
