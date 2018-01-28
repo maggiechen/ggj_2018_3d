@@ -3887,23 +3887,23 @@ Prefab:
         type: 2}
       propertyPath: m_Font
       value: 
-      objectReference: {fileID: 12800000, guid: dc742bbe6f87e0841801ba528bf8811a,
+      objectReference: {fileID: 12800000, guid: 0eb20a9ba2d1be342b6d6e6ef6cd44fb,
         type: 3}
     - target: {fileID: 23574512746683442, guid: e526ac3129bae44909306410027a0557,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: dc742bbe6f87e0841801ba528bf8811a, type: 3}
+      objectReference: {fileID: 2100000, guid: 0eb20a9ba2d1be342b6d6e6ef6cd44fb, type: 3}
     - target: {fileID: 23807056329379658, guid: e526ac3129bae44909306410027a0557,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: dc742bbe6f87e0841801ba528bf8811a, type: 3}
+      objectReference: {fileID: 2100000, guid: 0eb20a9ba2d1be342b6d6e6ef6cd44fb, type: 3}
     - target: {fileID: 102713610712152140, guid: e526ac3129bae44909306410027a0557,
         type: 2}
       propertyPath: m_Font
       value: 
-      objectReference: {fileID: 12800000, guid: dc742bbe6f87e0841801ba528bf8811a,
+      objectReference: {fileID: 12800000, guid: 0eb20a9ba2d1be342b6d6e6ef6cd44fb,
         type: 3}
     - target: {fileID: 102713610712152140, guid: e526ac3129bae44909306410027a0557,
         type: 2}
@@ -3919,13 +3919,13 @@ Prefab:
         type: 2}
       propertyPath: m_Font
       value: 
-      objectReference: {fileID: 12800000, guid: dc742bbe6f87e0841801ba528bf8811a,
+      objectReference: {fileID: 12800000, guid: 0eb20a9ba2d1be342b6d6e6ef6cd44fb,
         type: 3}
     - target: {fileID: 23281869626798248, guid: e526ac3129bae44909306410027a0557,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: dc742bbe6f87e0841801ba528bf8811a, type: 3}
+      objectReference: {fileID: 2100000, guid: 0eb20a9ba2d1be342b6d6e6ef6cd44fb, type: 3}
     - target: {fileID: 102921252708555978, guid: e526ac3129bae44909306410027a0557,
         type: 2}
       propertyPath: m_FontStyle
@@ -3986,7 +3986,7 @@ Prefab:
     - target: {fileID: 224198714648137816, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 444
       objectReference: {fileID: 0}
     - target: {fileID: 4926079879438274, guid: 504a39508a95f1841af4aeb68114dc21, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
