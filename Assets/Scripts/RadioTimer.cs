@@ -9,7 +9,7 @@ public class RadioTimer : MonoBehaviour {
     public TextMesh timerText;
     private float timeElapsed = 0.0f;
     private bool timerRunning = false;
-
+    bool startedTimerFirstTime = false;
 	// Use this for initialization
 	void Start () {
         if (instance == null) {
@@ -35,6 +35,12 @@ public class RadioTimer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!startedTimerFirstTime && GameManager.Instance.gameStateMachine.currentState == StateType.Playing)
+        {
+            startedTimerFirstTime = true;
+            StartTimer();
+        }
+
         if (timerRunning) {
             timeElapsed += Time.deltaTime;
             int minutes = (int)Mathf.Floor(timeElapsed / 60f);

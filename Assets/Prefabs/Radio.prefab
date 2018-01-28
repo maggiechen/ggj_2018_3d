@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 4582096249181612}
   - component: {fileID: 23807056329379658}
   - component: {fileID: 102713610712152140}
+  - component: {fileID: 114072887211389378}
   m_Layer: 0
   m_Name: FreqText
   m_TagString: Untagged
@@ -199,6 +200,7 @@ GameObject:
   - component: {fileID: 33029909082875760}
   - component: {fileID: 136204062306000772}
   - component: {fileID: 23074413034089396}
+  - component: {fileID: 114486460306525342}
   m_Layer: 0
   m_Name: WeedAlert
   m_TagString: Untagged
@@ -236,6 +238,7 @@ GameObject:
   - component: {fileID: 23574512746683442}
   - component: {fileID: 102873735868268904}
   - component: {fileID: 114268185362182430}
+  - component: {fileID: 114404352974189546}
   m_Layer: 0
   m_Name: TimerText
   m_TagString: Untagged
@@ -472,7 +475,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58712f1f14b43134b88de038bea86f9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1102,6 +1105,24 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
+--- !u!114 &114072887211389378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1490470205592886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d81fe7924f2a8d4b81dac6e49c5109e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMesh: {fileID: 102713610712152140}
+  keyFrames:
+  - 0.4
+  - 0.1
+  - 0.5
+  - 0.3
+  - 0.6
 --- !u!114 &114141171779062432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1139,6 +1160,25 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114404352974189546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1974367100446390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d81fe7924f2a8d4b81dac6e49c5109e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMesh: {fileID: 102873735868268904}
+  keyFrames:
+  - 0.4
+  - 0.1
+  - 0.6
+  - 0.1
+  - 0.8
+  - 0.5
 --- !u!114 &114412362489554094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1150,6 +1190,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf438b093bbd67d47b6968afc50165e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114486460306525342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1561174757313932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a211ded91a0dd941b065c8906076ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkingSpeed: 0.02
 --- !u!135 &135080517241638828
 SphereCollider:
   m_ObjectHideFlags: 1
