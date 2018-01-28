@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class GameManager {
     private static GameManager instance;
     public GameStateMachine gameStateMachine = new GameStateMachine();
     public List<Dictionary<int, int>> copMovementsByInterval = new List<Dictionary<int, int>>();
-
+    private int copMovementIndex;
     public static GameManager Instance
     {
         get
@@ -14,12 +15,12 @@ public class GameManager {
             if (instance == null)
             {
                 instance = new GameManager();
-
+                instance.copMovementIndex = 0;
                 // populate cop movements
                 // 00:30
                 Dictionary<int, int> copMoves = new Dictionary<int, int>
                 {
-                    {3, 1 }
+                    { 3, 1 }
                 };
                 instance.copMovementsByInterval.Add(copMoves);
 
@@ -87,12 +88,32 @@ public class GameManager {
                 copMoves = new Dictionary<int, int>
                 {
                     {3, 0 }, // 0 will represent grabbing the user's previous position
-                    {4, 0 }
                 };
                 instance.copMovementsByInterval.Add(copMoves);
             }
 
             return instance;
+        }
+    }
+
+    public void AdvanceCopMovements()
+    {
+        if (copMovementIndex == copMovementsByInterval.Count)
+        {
+            if (gameStateMachine.currentState == StateType.Playing)
+            {
+                gameStateMachine.AdvanceState();
+            }
+        } else
+        {
+            Dictionary<int, int> movements = copMovementsByInterval[copMovementIndex];
+            
+            foreach (KeyValuePair<int, int> entry in movements)
+            {
+                gameStateMachine.UpdateCops(entry.Key, entry.Value);
+            }
+            
+            copMovementIndex++;
         }
     }
 }

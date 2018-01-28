@@ -32,7 +32,8 @@ public class RadioTimer : MonoBehaviour {
         StopTimer();
         timeElapsed = 0.0f;
     }
-	
+
+    int prevSecondsDisplayed = 0;
 	// Update is called once per frame
 	void Update () {
         if (!startedTimerFirstTime && GameManager.Instance.gameStateMachine.currentState == StateType.Playing)
@@ -48,6 +49,13 @@ public class RadioTimer : MonoBehaviour {
             string minutesText = (minutes < 10) ? "0" + minutes.ToString() : minutes.ToString();
             string secondsText = (seconds < 10) ? "0" + seconds.ToString() : seconds.ToString();
             timerText.text = minutesText + ":" + secondsText;
+
+            if (prevSecondsDisplayed != seconds && seconds % 30 == 0)
+            {
+                GameManager.Instance.AdvanceCopMovements();
+            }
+
+            prevSecondsDisplayed = seconds;
         }
-	}
+    }
 }
