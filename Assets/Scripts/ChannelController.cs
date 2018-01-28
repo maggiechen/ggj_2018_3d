@@ -80,6 +80,9 @@ public class ChannelController : MonoBehaviour {
 
         foreach(AudioSource police in radioChannels)
         {
+            Debug.Log("GO!");
+            //TODO Don't actually loop, just for testing
+            police.loop = true;
             police.Play();
         }
     }
