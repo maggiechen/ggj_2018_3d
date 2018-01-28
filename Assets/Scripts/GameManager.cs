@@ -108,28 +108,25 @@ public class GameManager {
         {
             gameStateMachine.locations[i] = 0;
         }
-        Debug.Log("Cops reset");
     }
 
     public void AdvanceCopMovements()
     {
-        Debug.Log(copMovementIndex.ToString() + " " + copMovementsByInterval.Count.ToString());
+        Dictionary<int, int> movements = copMovementsByInterval[copMovementIndex];
+            
+        foreach (KeyValuePair<int, int> entry in movements)
+        {
+            gameStateMachine.UpdateCops(entry.Key, entry.Value);
+        }
+        
+        copMovementIndex++;
+
         if (copMovementIndex == copMovementsByInterval.Count)
         {
             if (gameStateMachine.currentState == StateType.Playing)
             {
                 gameStateMachine.AdvanceState();
             }
-        } else
-        {
-            Dictionary<int, int> movements = copMovementsByInterval[copMovementIndex];
-            
-            foreach (KeyValuePair<int, int> entry in movements)
-            {
-                gameStateMachine.UpdateCops(entry.Key, entry.Value);
-            }
-            
-            copMovementIndex++;
         }
     }
 }
