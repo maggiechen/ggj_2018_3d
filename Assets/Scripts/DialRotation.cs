@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DialRotation : MonoBehaviour {
 
-    public float RotationSpeed = 0.5f;
+    public float RotationSpeed = 3f;
     public GameObject slider;
     public TextMesh frequency;
 

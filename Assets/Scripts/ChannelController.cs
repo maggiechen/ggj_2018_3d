@@ -15,9 +15,12 @@ public class ChannelController : MonoBehaviour {
 
     private const string VO_PATH = "Sounds/VO/";
     private const float VOL_DELTA = 0.1f;
-    private const int POLICE_CHANNELS = 3;
-    private const int RADIO_SFX_SOURCES = 2;
-    private const int WEEDMAN_SOURCE = 3;
+    private const int TOTAL_POLICE_CHANNELS = 3;
+    private const int TOTAL_RADIO_SFX = 2;
+    private const int WEEDMAN_CHANNEL = 3;
+
+    private bool loopWeedmanRants = false;
+    private int weedmanLoopIndex = 1; //or 2
  
     void Start () {
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -26,26 +29,26 @@ public class ChannelController : MonoBehaviour {
         RadioStatic = audioSources[0];
         RadioTuning = audioSources[1];
 
-        radioChannels = new AudioSource[totalAudioSources - RADIO_SFX_SOURCES];
+        radioChannels = new AudioSource[totalAudioSources - TOTAL_RADIO_SFX];
 
-        for (int c = 0; c < totalAudioSources - RADIO_SFX_SOURCES; c++)
+        for (int c = 0; c < totalAudioSources - TOTAL_RADIO_SFX; c++)
         {
-            radioChannels[c] = audioSources[c + RADIO_SFX_SOURCES];
+            radioChannels[c] = audioSources[c + TOTAL_RADIO_SFX];
         }
         
 
         radioSFX = Resources.LoadAll<AudioClip>("Sounds/SFX");
         weedmanClips = Resources.LoadAll<AudioClip>(VO_PATH + "Weedman");
-        policeClips = new AudioClip[POLICE_CHANNELS][];
+        policeClips = new AudioClip[TOTAL_POLICE_CHANNELS][];
 
-        for (int p = 0; p < POLICE_CHANNELS; p++)
+        for (int p = 0; p < TOTAL_POLICE_CHANNELS; p++)
         {
             string path = VO_PATH + "Channel" + (p + 1);
             policeClips[p] = Resources.LoadAll<AudioClip>(path);
 
             assignClipToSource(policeClips[p][0], radioChannels[p]);
         }
-        assignClipToSource(weedmanClips[0], radioChannels[WEEDMAN_SOURCE]);
+        assignClipToSource(weedmanClips[0], radioChannels[WEEDMAN_CHANNEL]);
 
         assignClipToSourceAndPlay(radioSFX[0], RadioStatic);
         assignClipToSourceAndPlay(radioSFX[1], RadioTuning);
@@ -66,8 +69,8 @@ public class ChannelController : MonoBehaviour {
 
     public void TriggerIntro()
     {
-        radioChannels[WEEDMAN_SOURCE].volume = 1;
-        radioChannels[WEEDMAN_SOURCE].Play();
+        radioChannels[WEEDMAN_CHANNEL].volume = 1;
+        radioChannels[WEEDMAN_CHANNEL].Play();
         Invoke("FinishedIntro", weedmanClips[0].length);
     }
 
@@ -78,13 +81,29 @@ public class ChannelController : MonoBehaviour {
             GameManager.Instance.gameStateMachine.AdvanceState();
         }
 
-        foreach(AudioSource police in radioChannels)
+        for(int p = 0; p < TOTAL_POLICE_CHANNELS; p++)
         {
-            Debug.Log("GO!");
+            AudioSource police = radioChannels[p];
             //TODO Don't actually loop, just for testing
             police.loop = true;
             police.Play();
         }
+        loopWeedmanRants = true;
+        radioChannels[WEEDMAN_CHANNEL].loop = false;
+        changeWeedmanLoopIndex();
+    }
+
+    private void changeWeedmanLoopIndex()
+    {
+        radioChannels[WEEDMAN_CHANNEL].clip = weedmanClips[weedmanLoopIndex];
+        if (weedmanLoopIndex == 1)
+        {
+            weedmanLoopIndex = 2;
+        } else
+        {
+            weedmanLoopIndex = 1;
+        }
+        radioChannels[WEEDMAN_CHANNEL].Play();
     }
 	
     //returns 0 - 2 for police channels
@@ -159,6 +178,11 @@ public class ChannelController : MonoBehaviour {
         {
             //TODO: check if a pin was placed/button was pressed and give a stock response.
             radioChannels[currentChannel].volume+=VOL_DELTA;
+        }
+
+        if (loopWeedmanRants && !radioChannels[WEEDMAN_CHANNEL].isPlaying)
+        {
+            changeWeedmanLoopIndex();
         }
 	}
 
