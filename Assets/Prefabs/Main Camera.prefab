@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 20359647617075274}
   - component: {fileID: 124662046608671702}
   - component: {fileID: 81071921658198038}
+  - component: {fileID: 114890654422268816}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -150,7 +151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1928487986008716
 GameObject:
   m_ObjectHideFlags: 1
@@ -203,15 +204,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1823951867441560}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.023472505, y: 0, z: 0, w: 0.9997245}
+  m_LocalPosition: {x: 0.74, y: -0.1, z: -7.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4095355111560136}
   - {fileID: 4614203752188018}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.69, y: 0, z: 0}
 --- !u!20 &20359647617075274
 Camera:
   m_ObjectHideFlags: 1
@@ -231,7 +232,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -457,7 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 225899629448675980}
-  fadeRate: 0.05
+  fadeRate: 0.005
 --- !u!114 &114811565058967516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -487,6 +488,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &114890654422268816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1823951867441560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4433c4bb57e184d9cc2ad00e1cd419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothr: 10
+  smoothp: 10
+  tiltAngle: 3
+  moveAmount: 1
+  timeOut: 100
+  screenFaderController: {fileID: 114739010846415344}
 --- !u!114 &114942381847985382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -590,7 +608,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 297, y: 444}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224230325633954982
 RectTransform:

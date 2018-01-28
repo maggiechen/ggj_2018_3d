@@ -33,6 +33,14 @@ public class RadioTimer : MonoBehaviour {
         timeElapsed = 0.0f;
     }
 
+    private int ConvertToHour(int minutes) {
+        minutes += 11;
+        if (minutes > 12) {
+            minutes -= 12;
+        }
+        return minutes;
+    }
+
     int prevSecondsDisplayed = 0;
 	// Update is called once per frame
 	void Update () {
@@ -46,7 +54,7 @@ public class RadioTimer : MonoBehaviour {
             timeElapsed += Time.deltaTime;
             int minutes = (int)Mathf.Floor(timeElapsed / 60f);
             int seconds = (int)Mathf.Floor(timeElapsed % 60f);
-            string minutesText = (minutes < 10) ? "0" + minutes.ToString() : minutes.ToString();
+            string minutesText = (ConvertToHour(minutes) < 10) ? "0" + ConvertToHour(minutes).ToString() : ConvertToHour(minutes).ToString();
             string secondsText = (seconds < 10) ? "0" + seconds.ToString() : seconds.ToString();
             timerText.text = minutesText + ":" + secondsText;
 
