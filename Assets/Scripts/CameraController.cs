@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour {
     private void Start() {
         baseRotation = gameObject.transform.rotation;
         basePosition = gameObject.transform.position;
-        lastMovementTimestamp = Time.time;
+        lastMovementTimestamp = -timeOut;
     }
 
     // Update is called once per frame
