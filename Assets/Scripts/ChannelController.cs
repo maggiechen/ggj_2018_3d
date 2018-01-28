@@ -43,8 +43,12 @@ public class ChannelController : MonoBehaviour {
             string path = VO_PATH + "Channel" + (p + 1);
             policeClips[p] = Resources.LoadAll<AudioClip>(path);
 
-            assignClipToSource(policeClips[p][0], radioChannels[p]);
+            for (int i = 0; i < policeClips [p].Length; i++) {
+                assignClipToSource (policeClips [p] [i], radioChannels [p]);
+            }
         }
+       
+
         assignClipToSource(weedmanClips[0], radioChannels[WEEDMAN_SOURCE]);
 
         assignClipToSourceAndPlay(radioSFX[0], RadioStatic);
@@ -78,13 +82,17 @@ public class ChannelController : MonoBehaviour {
             GameManager.Instance.gameStateMachine.AdvanceState();
         }
 
+        int i = 0;
+
         foreach(AudioSource police in radioChannels)
         {
-            Debug.Log("GO!");
+            i++;
+            //Debug.Log("GO!");
             //TODO Don't actually loop, just for testing
-            police.loop = true;
+            //police.loop = true;
             police.Play();
         }
+        Debug.Log (i);
     }
 	
     //returns 0 - 2 for police channels
