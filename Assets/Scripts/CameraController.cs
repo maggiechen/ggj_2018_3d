@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-    public float smoothr = 2.0F;
-    public float smoothp = 10.0F;
+    public float smoothr = 1.0F;
+    public float smoothp = 5.0F;
     public float tiltAngle = 5.0F;
     public float moveAmount = 1.0F;
+    public float timeOut = 5.0F;
 
+    private float lastMovementTimestamp;
     private Vector3 basePosition;
     private Quaternion baseRotation;
 
@@ -16,12 +18,24 @@ public class CameraController : MonoBehaviour {
     private void Start() {
         baseRotation = gameObject.transform.rotation;
         basePosition = gameObject.transform.position;
+        lastMovementTimestamp = Time.time;
     }
 
     // Update is called once per frame
     void Update () {
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0) {
+            // Mouse moved
+            lastMovementTimestamp = Time.time;
+        }
+
         float ratioX = (Input.mousePosition.x / Screen.width) - 0.5F;
         float ratioY = (Input.mousePosition.y / Screen.height) - 0.5F;
+
+        if (Time.time - lastMovementTimestamp > timeOut) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, baseRotation, Time.deltaTime * smoothr/4);
+            transform.position = Vector3.Slerp(transform.position, basePosition, Time.deltaTime * smoothp/4);
+            return;
+        }
 
         Quaternion targetr = Quaternion.Euler(-ratioY * tiltAngle, ratioX * tiltAngle, 0);
         transform.rotation = Quaternion.Slerp(transform.rotation, baseRotation * targetr, Time.deltaTime * smoothr);
