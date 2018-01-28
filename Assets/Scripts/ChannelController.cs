@@ -5,7 +5,9 @@ using UnityEngine;
 public class ChannelController : MonoBehaviour {
     private AudioSource[] radioChannels;
     private AudioSource RadioTuning;
+    private AudioSource RadioStatic;
     private AudioSource[] audioSources;
+    private int totalAudioSources;
 
     private AudioClip[] radioSFX;
     private AudioClip[][] policeClips;
@@ -14,18 +16,21 @@ public class ChannelController : MonoBehaviour {
     private const string VO_PATH = "Sounds/VO";
     private const float VOL_DELTA = 0.1f;
     private const int POLICE_CHANNELS = 3;
-
-    private int lastPlayingStation = 0;
-
-    // Use this for initialization
+    private const int RADIO_SFX_SOURCES = 2;
+    private const int WEEDMAN_CONST = 5;
+ 
     void Start () {
-        audioSources = GetComponents<AudioSource>();
-        RadioTuning = audioSources[0];
-        radioChannels = new AudioSource[audioSources.Length - 1];
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        totalAudioSources = audioSources.Length;
 
-        for (int c = 0; c < audioSources.Length - 1; c++)
+        RadioStatic = audioSources[0];
+        RadioTuning = audioSources[1];
+
+        radioChannels = new AudioSource[totalAudioSources - RADIO_SFX_SOURCES];
+
+        for (int c = 0; c < totalAudioSources - RADIO_SFX_SOURCES; c++)
         {
-            radioChannels[c] = audioSources[c+1];
+            radioChannels[c] = audioSources[c + RADIO_SFX_SOURCES];
         }
         
 
@@ -37,17 +42,19 @@ public class ChannelController : MonoBehaviour {
             string path = VO_PATH + "/Channel" + (p + 1);
             policeClips[p] = Resources.LoadAll<AudioClip>(path);
 
-            radioChannels[p].clip = policeClips[p][0];
-            radioChannels[p].volume = 0;
-            radioChannels[p].loop = true;
-            radioChannels[p].Play();
+            assignClipToSourceAndPlay(policeClips[p][0], radioChannels[p]);
         }
 
-        RadioTuning.clip = radioSFX[1];
-        RadioTuning.volume = 0;
-        RadioTuning.loop = true;
-        RadioTuning.Play();
+        assignClipToSourceAndPlay(radioSFX[0], RadioStatic);
+        assignClipToSourceAndPlay(radioSFX[1], RadioTuning);
+    }
 
+    private void assignClipToSourceAndPlay(AudioClip clip, AudioSource source)
+    {
+        source.clip = clip;
+        source.volume = 0;
+        source.loop = true;
+        source.Play();
     }
 	
     //returns 0 - 2 for police channels
@@ -60,7 +67,7 @@ public class ChannelController : MonoBehaviour {
             return 1;
         else if (frequency >= 407.63 && frequency <= 410.20)
             return 2;
-        else if (frequency == 420.69)
+        else if (frequency >= 417.37 && frequency <= 422)
             return 3;
         else
             return -1;
@@ -70,7 +77,7 @@ public class ChannelController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         bool dialMoving = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
-        int currentChannel = ChannelController.ReturnChannel(DialRotation.GetFrequency());
+        int currentChannel = ReturnChannel(DialRotation.GetFrequency());
 
         if (dialMoving)
         {
@@ -83,10 +90,10 @@ public class ChannelController : MonoBehaviour {
             RadioTuning.volume -= VOL_DELTA;
         }
 
-        //Dial can hear a radio station
-        //TODO THIS IS NOT TESTED
+        
         if (currentChannel >= 0)
         {
+            //Dial can hear a radio station
             radioChannels[currentChannel].volume += VOL_DELTA;
             if (currentChannel - 1 >= 0)
             {
@@ -96,10 +103,18 @@ public class ChannelController : MonoBehaviour {
             {
                 radioChannels[currentChannel + 1].volume -= VOL_DELTA;
             }
+            if (RadioStatic.volume > 0)
+            {
+                RadioStatic.volume -= VOL_DELTA;
+            }
         }
         else
         {
             //Static, make the channels quieter
+            if(RadioStatic.volume < 1)
+            {
+                RadioStatic.volume += VOL_DELTA;
+            }
             foreach (AudioSource radioChannel in radioChannels)
             {
                 if (radioChannel.volume > 0)
@@ -111,9 +126,9 @@ public class ChannelController : MonoBehaviour {
 
         if (currentChannel == 3)
         {
-           //TODO Weed Channel, let Player interact with Map
+            //TODO: check if a pin was placed/button was pressed and give a stock response.
+            radioChannels[currentChannel].volume+=VOL_DELTA;
         }
 	}
-
 
 }

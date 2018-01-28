@@ -8,6 +8,8 @@ public class GameStateMachine
     private Dictionary<StateType, GameState> states = new Dictionary<StateType, GameState>()
     {
         {StateType.Intro, new IntroState()},
+        {StateType.Off, new OffState()},
+        {StateType.WeedManTalking, new WeedManTalkingState()},
         {StateType.Playing, new PlayingState()},
         {StateType.Paused, new PausedState()},
         {StateType.BadEnd, new BadEndState()},
@@ -53,10 +55,12 @@ public class GameStateMachine
 public enum StateType
 {
     Intro,
-    Playing,
+    Off,
     Paused,
     BadEnd,
-    GoodEnd
+    GoodEnd,
+    WeedManTalking,
+    Playing
 }
 
 public interface GameState
@@ -67,6 +71,22 @@ public interface GameState
 public class IntroState : GameState
 {
 
+    public StateType GetNextState(GameStateMachine sm)
+    {
+        return StateType.Off;
+    }
+}
+
+public class OffState : GameState
+{
+    public StateType GetNextState(GameStateMachine sm)
+    {
+        return StateType.WeedManTalking;
+    }
+}
+
+public class WeedManTalkingState : GameState
+{
     public StateType GetNextState(GameStateMachine sm)
     {
         return StateType.Playing;
