@@ -231,7 +231,7 @@ Prefab:
     - target: {fileID: 114811565058967516, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: scrollRate
-      value: 0.001
+      value: 0.002
       objectReference: {fileID: 0}
     - target: {fileID: 114811565058967516, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
@@ -242,6 +242,10 @@ Prefab:
         type: 2}
       propertyPath: fadeRate
       value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923397018636930, guid: 504a39508a95f1841af4aeb68114dc21, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 504a39508a95f1841af4aeb68114dc21, type: 2}
