@@ -24,9 +24,11 @@ public class GameStateMachine
 
     List<int> locations = new List<int> { 0, 0, 0, 0};
     int weedVanLocation;
+    int weedVanPrevLocation;
 
     public void MoveWeedVan(int newLocation)
     {
+        weedVanPrevLocation = weedVanLocation;
         weedVanLocation = newLocation;
         if(locations[newLocation] > 0)
         {
@@ -45,15 +47,13 @@ public class GameStateMachine
         }
     }
 
-    public void MoveCop(int from, int to)
+    public void DeleteCop(int from)
     {
         locations[from]--;
         if (locations[from] < 0)
         {
             throw new Exception("what the cyber can you count?!!");
         }
-
-        InsertAtLocation(to);
     }
 
     public GameStateMachine()
