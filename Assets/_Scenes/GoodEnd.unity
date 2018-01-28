@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -201,20 +201,18 @@ Prefab:
     - target: {fileID: 224198714648137816, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 557
+      value: 417
       objectReference: {fileID: 0}
     - target: {fileID: 224198714648137816, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 370
+      value: 318
       objectReference: {fileID: 0}
     - target: {fileID: 114286550570750728, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_Text
-      value: "\n\n\n\n\n\n\n\nYou win!\nYou have been rewarded with one leaf of authentic,
-        \norganic 2018 weed, and Weed Man is free once more \nto spread the Gospel
-        of cyberJesus to the \ncyberweedless cybermasses.\n\nCyberpress CyberSpace
-        to cyberrestart."
+      value: "\n\n\n\n\n\n\n\nYou win!\nTime to get \n\nC Y B E R H I G H\n\nCyberpress
+        CyberSpace to cyberrestart."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 504a39508a95f1841af4aeb68114dc21, type: 2}

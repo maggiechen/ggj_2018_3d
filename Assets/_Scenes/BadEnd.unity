@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -201,19 +201,22 @@ Prefab:
     - target: {fileID: 224198714648137816, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 461
+      value: 1949
       objectReference: {fileID: 0}
     - target: {fileID: 224198714648137816, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 474
       objectReference: {fileID: 0}
     - target: {fileID: 114286550570750728, guid: 504a39508a95f1841af4aeb68114dc21,
         type: 2}
       propertyPath: m_Text
-      value: "\n\n\n\n\n\n\n\n\n\nYou lose. \nThe cybercops caught Weed Man,\nand
-        the cyberweed has been lost once again\nto the Institution. \n\nCyberpress
-        CyberSpace to cyberrestart."
+      value: "\n\n\n\n\n\n\n\n\n\nYou lose. \nThe cybercops caught Weed Man, making
+        him just like one of the 140,000 people behind bars in the United States on
+        simple drug possession charges, according to the Human Rights Watch.\n\nFurthermore,
+        despite statistically equal usage across all social groups, African Americans
+        are 3.7 times more likely to face incarceration.\n\nDonate to your local civil
+        rights org today.\n\nCyberpress CyberSpace to cyberrestart."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 504a39508a95f1841af4aeb68114dc21, type: 2}
