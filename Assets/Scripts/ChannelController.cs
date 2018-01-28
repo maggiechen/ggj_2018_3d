@@ -111,7 +111,7 @@ public class ChannelController : MonoBehaviour {
 
         if (currentChannel == 3)
         {
-            //TODO Weed Channel, let Player interact with Map
+           //TODO Weed Channel, let Player interact with Map
         }
 	}
 
