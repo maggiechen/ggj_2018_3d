@@ -21,9 +21,13 @@ public class ChannelController : MonoBehaviour {
 
     private bool loopWeedmanRants = false;
     private int weedmanLoopIndex = 1; //or 2
+    private int weedmanResponseIndex = 3; //to 5
+
+    public bool TalkingToWeedman = false;
  
     void Start () {
         AudioSource[] audioSources = GetComponents<AudioSource>();
+
         totalAudioSources = audioSources.Length;
 
         RadioStatic = audioSources[0];
@@ -76,7 +80,7 @@ public class ChannelController : MonoBehaviour {
 
     public void FinishedIntro()
     {
-        if(GameManager.Instance.gameStateMachine.currentState == StateType.WeedManTalking)
+        if(GameManager.Instance.gameStateMachine.currentState == StateType.WeedManIntro)
         {
             GameManager.Instance.gameStateMachine.AdvanceState();
         }
@@ -159,6 +163,7 @@ public class ChannelController : MonoBehaviour {
             if (currentChannel != WEEDMAN_CHANNEL)
             {
                 loopWeedmanRants = true;
+                TalkingToWeedman = false;
             }
         }
         else
@@ -181,6 +186,7 @@ public class ChannelController : MonoBehaviour {
         {
             //TODO: check if a pin was placed/button was pressed and give a stock response.
             radioChannels[WEEDMAN_CHANNEL].volume += VOL_DELTA;
+            TalkingToWeedman = true;
         }
 
         //Check for weedman rant loops
@@ -188,14 +194,23 @@ public class ChannelController : MonoBehaviour {
         {
             changeWeedmanLoopIndex();
         }
-        //TODO testing interrupts
-        if (Input.GetKey(KeyCode.Space))
+    }
+
+    public void InterruptWeedman()
+    {
+        radioChannels[WEEDMAN_CHANNEL].Stop();
+        loopWeedmanRants = false;
+        radioChannels[WEEDMAN_CHANNEL].clip = weedmanClips[pickWeedmanResponse()];
+        radioChannels[WEEDMAN_CHANNEL].Play();
+    }
+
+    private int pickWeedmanResponse()
+    {
+        if(weedmanResponseIndex > 5)
         {
-            radioChannels[WEEDMAN_CHANNEL].Stop();
-            loopWeedmanRants = false;
-            radioChannels[WEEDMAN_CHANNEL].clip = weedmanClips[3];
-            radioChannels[WEEDMAN_CHANNEL].Play();
+            weedmanResponseIndex = 3;
         }
+        return weedmanResponseIndex++;
     }
 
     private void handleTuningSound(bool dialMoving)

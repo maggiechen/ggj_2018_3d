@@ -61,7 +61,7 @@ public class DialRotation : MonoBehaviour {
 
         dialLocked = GameManager.Instance.gameStateMachine.currentState == StateType.Off 
             || GameManager.Instance.gameStateMachine.currentState == StateType.Intro 
-            || GameManager.Instance.gameStateMachine.currentState == StateType.WeedManTalking;
+            || GameManager.Instance.gameStateMachine.currentState == StateType.WeedManIntro;
 
         if (!dialLocked)
         {
