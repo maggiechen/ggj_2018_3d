@@ -43,9 +43,5 @@ public class RadioTimer : MonoBehaviour {
             string secondsText = (seconds < 10) ? "0" + seconds.ToString() : seconds.ToString();
             timerText.text = minutesText + ":" + secondsText;
         }
-
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            timerRunning = !timerRunning;
-        }
 	}
 }
